@@ -1,0 +1,6 @@
+(library
+  (name tablecloth)
+  (public_name tablecloth-melange)
+  (modes melange)
+  (preprocess (pps melange.ppx))
+  (melange.compile_flags :standard -w +101))
