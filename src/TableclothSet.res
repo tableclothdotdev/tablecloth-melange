@@ -65,7 +65,7 @@ module Poly = {
 
           type identity = identity
 
-          let cmp = Obj.magic(Pervasives.compare)
+          let cmp = Obj.magic(Stdlib.compare)
         }
       ),
     )
