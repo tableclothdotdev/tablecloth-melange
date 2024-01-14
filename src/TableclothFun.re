@@ -18,7 +18,7 @@ let rec times = (n, ~f as [@ns.namedArgLoc] f) =>
     ();
   } else {
     f();
-    times(n - 1, ~[@ns.namedArgLoc] f);
+    times(n - 1, ~f=[@ns.namedArgLoc] f);
   };
 let forever = f =>
   try(

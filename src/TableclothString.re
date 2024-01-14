@@ -116,7 +116,7 @@ let slice =
     )
     : string =>
   Js.String.slice(
-    ~[@ns.namedArgLoc] from,
+    ~from=[@ns.namedArgLoc] from,
     ~to_=[@ns.namedArgLoc] Belt.Option.getWithDefault(to_, length(t)),
     t,
   );

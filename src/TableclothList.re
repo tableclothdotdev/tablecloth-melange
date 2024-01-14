@@ -21,7 +21,7 @@ let sum = (type a, t, module M: TableclothContainer.Sum with type t = a) =>
   List.fold_left(M.add, M.zero, t);
 let map = (t, ~f as [@ns.namedArgLoc] f) => Belt.List.map(t, a => f(a));
 let flatMap = (t, ~f as [@ns.namedArgLoc] f) =>
-  flatten(map(t, ~[@ns.namedArgLoc] f));
+  flatten(map(t, ~f=[@ns.namedArgLoc] f));
 let mapWithIndex = (list, ~f as [@ns.namedArgLoc] f) =>
   Belt.List.mapWithIndex(list, (a, b) => f(a, b));
 let map2 = (a, b, ~f as [@ns.namedArgLoc] f) =>
@@ -31,7 +31,7 @@ let rec map3 = (a, b, c, ~f as [@ns.namedArgLoc] f) =>
   switch (a, b, c) {
   | ([x, ...xs], [y, ...ys], [z, ...zs]) => [
       f(x, y, z),
-      ...map3(xs, ys, zs, ~[@ns.namedArgLoc] f),
+      ...map3(xs, ys, zs, ~f=[@ns.namedArgLoc] f),
     ]
   | _ => []
   };
@@ -173,7 +173,7 @@ let rec dropWhile = (t, ~f as [@ns.namedArgLoc] f) =>
   | [] => []
   | [x, ...rest] =>
     if (f(x)) {
-      dropWhile(rest, ~[@ns.namedArgLoc] f);
+      dropWhile(rest, ~f=[@ns.namedArgLoc] f);
     } else {
       t;
     }
@@ -198,7 +198,7 @@ let sliding =
     loop(t);
   };
 let chunksOf = (t, ~size as [@ns.namedArgLoc] size) =>
-  sliding(t, ~step=[@ns.namedArgLoc] size, ~[@ns.namedArgLoc] size);
+  sliding(t, ~step=[@ns.namedArgLoc] size, ~size=[@ns.namedArgLoc] size);
 let cons = (t, element) => [element, ...t];
 let takeWhile = (t, ~f as [@ns.namedArgLoc] f) =>
   [@ns.braces]
@@ -226,7 +226,7 @@ let removeAt = (t, ~index as [@ns.namedArgLoc] index) =>
     t;
   } else {
     let (front, back): (t('a), t('a)) =
-      splitAt(t, ~[@ns.namedArgLoc] index);
+      splitAt(t, ~index=[@ns.namedArgLoc] index);
     switch (tail(back)) {
     | None => t
     | Some(t) => append(front, t)
@@ -395,7 +395,7 @@ let insertAt =
     (t, ~index as [@ns.namedArgLoc] index, ~value as [@ns.namedArgLoc] value) =>
   [@ns.braces]
   {
-    let (front, back) = splitAt(t, ~[@ns.namedArgLoc] index);
+    let (front, back) = splitAt(t, ~index=[@ns.namedArgLoc] index);
     append(front, [value, ...back]);
   };
 let splitWhen = (t, ~f as [@ns.namedArgLoc] f) =>
@@ -442,7 +442,7 @@ let groupBy = (t, comparator, ~f as [@ns.namedArgLoc] f) =>
     [@ns.braces]
     {
       let key = f(element);
-      TableclothMap.update(map, ~[@ns.namedArgLoc] key, ~f=[@ns.namedArgLoc] x =>
+      TableclothMap.update(map, ~key=[@ns.namedArgLoc] key, ~f=[@ns.namedArgLoc] x =>
         switch (x) {
         | None => Some([element])
         | Some(elements) => Some([element, ...elements])

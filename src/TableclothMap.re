@@ -41,7 +41,7 @@ let filterMap = (m, ~f as [@ns.namedArgLoc] f) =>
   [@ns.braces]
   {
     let f' = ((key, value)) =>
-      f(~[@ns.namedArgLoc] key, ~[@ns.namedArgLoc] value)
+      f(~key=[@ns.namedArgLoc] key, ~value=[@ns.namedArgLoc] value)
       ->(Belt.Option.map(value' => (key, value')));
     m
     ->Belt.Map.toArray
@@ -50,11 +50,11 @@ let filterMap = (m, ~f as [@ns.namedArgLoc] f) =>
   };
 let partition = (m, ~f as [@ns.namedArgLoc] f) =>
   Belt.Map.partition(m, (key, value) =>
-    f(~[@ns.namedArgLoc] key, ~[@ns.namedArgLoc] value)
+    f(~key=[@ns.namedArgLoc] key, ~value=[@ns.namedArgLoc] value)
   );
 let find = (m, ~f as [@ns.namedArgLoc] f) =>
   Belt.Map.findFirstBy(m, (key, value) =>
-    f(~[@ns.namedArgLoc] key, ~[@ns.namedArgLoc] value)
+    f(~key=[@ns.namedArgLoc] key, ~value=[@ns.namedArgLoc] value)
   );
 let any = (m, ~f as [@ns.namedArgLoc] f) =>
   Belt.Map.some(m, (_, value) => f(value));
@@ -64,12 +64,12 @@ let forEach = (m, ~f as [@ns.namedArgLoc] f) =>
   Belt.Map.forEach(m, (_, value) => f(value));
 let forEachWithIndex = (m, ~f as [@ns.namedArgLoc] f) =>
   Belt.Map.forEach(m, (key, value) =>
-    f(~[@ns.namedArgLoc] key, ~[@ns.namedArgLoc] value)
+    f(~key=[@ns.namedArgLoc] key, ~value=[@ns.namedArgLoc] value)
   );
 let fold =
     (m, ~initial as [@ns.namedArgLoc] initial, ~f as [@ns.namedArgLoc] f) =>
   Belt.Map.reduce(m, initial, (acc, key, data) =>
-    f(acc, ~[@ns.namedArgLoc] key, ~value=[@ns.namedArgLoc] data)
+    f(acc, ~key=[@ns.namedArgLoc] key, ~value=[@ns.namedArgLoc] data)
   );
 let keys = m => Array.to_list(Belt.Map.keysToArray(m));
 let values = m => Array.to_list(Belt.Map.valuesToArray(m));

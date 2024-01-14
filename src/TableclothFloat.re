@@ -15,7 +15,7 @@ let multiply = ( *. );
 let divide = (n, ~by as [@ns.namedArgLoc] by) => n /. by;
 let power =
     (~base as [@ns.namedArgLoc] base, ~exponent as [@ns.namedArgLoc] exponent) =>
-  Js.Math.pow_float(~[@ns.namedArgLoc] base, ~exp=[@ns.namedArgLoc] exponent);
+  Js.Math.pow_float(~base=[@ns.namedArgLoc] base, ~exp=[@ns.namedArgLoc] exponent);
 let negate = (~-.);
 let absolute = t => Js.Math.abs_float(t);
 let clamp =
@@ -98,7 +98,7 @@ let asin = t => Js.Math.asin(t);
 let tan = t => Js.Math.tan(t);
 let atan = t => Js.Math.atan(t);
 let atan2 = (~y as [@ns.namedArgLoc] y, ~x as [@ns.namedArgLoc] x) =>
-  Js.Math.atan2(~[@ns.namedArgLoc] y, ~[@ns.namedArgLoc] x, ());
+  Js.Math.atan2(~y=[@ns.namedArgLoc] y, ~x=[@ns.namedArgLoc] x, ());
 type nonrec direction = [
   | `Zero
   | `AwayFromZero
@@ -158,7 +158,7 @@ let truncate = t => Js.Math.trunc(t);
 let fromPolar = ((r, theta)) => (r *. cos(theta), r *. sin(theta));
 let toPolar = ((x, y)) => (
   hypotenuse(x, y),
-  atan2(~[@ns.namedArgLoc] x, ~[@ns.namedArgLoc] y),
+  atan2(~x=[@ns.namedArgLoc] x, ~y=[@ns.namedArgLoc] y),
 );
 let toInt = f =>
   if (Js.Float.isFinite(f)) {

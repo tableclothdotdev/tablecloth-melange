@@ -144,11 +144,11 @@ let find = (t, ~f as [@ns.namedArgLoc] f) =>
       } else if (f(t[i])) {
         Some(t[i]);
       } else {
-        find_loop(t, ~[@ns.namedArgLoc] f, ~[@ns.namedArgLoc] length, i + 1);
+        find_loop(t, ~f=[@ns.namedArgLoc] f, ~length=[@ns.namedArgLoc] length, i + 1);
       };
     find_loop(
       t,
-      ~[@ns.namedArgLoc] f,
+      ~f=[@ns.namedArgLoc] f,
       ~length=[@ns.namedArgLoc] length(t),
       0,
     );
@@ -220,7 +220,7 @@ let count = (t, ~f as [@ns.namedArgLoc] f) =>
       )
   );
 let chunksOf = (t, ~size as [@ns.namedArgLoc] size) =>
-  sliding(t, ~step=[@ns.namedArgLoc] size, ~[@ns.namedArgLoc] size);
+  sliding(t, ~step=[@ns.namedArgLoc] size, ~size=[@ns.namedArgLoc] size);
 let reverse = t => Belt.Array.reverseInPlace(t);
 let forEach = (t, ~f as [@ns.namedArgLoc] f): unit =>
   Belt.Array.forEach(t, a => f(a));
@@ -251,7 +251,7 @@ let splitAt = (t, ~index as [@ns.namedArgLoc] index) => (
 let splitWhen = (t, ~f as [@ns.namedArgLoc] f) =>
   switch (findIndex(t, ~f=[@ns.namedArgLoc] (_, e) => f(e))) {
   | None => (t, [||])
-  | Some((index, _)) => splitAt(t, ~[@ns.namedArgLoc] index)
+  | Some((index, _)) => splitAt(t, ~index=[@ns.namedArgLoc] index)
   };
 let unzip = t => (
   Array.init(length(t), i => fst(t[i])),
@@ -304,7 +304,7 @@ let groupBy = (t, comparator, ~f as [@ns.namedArgLoc] f) =>
     [@ns.braces]
     {
       let key = f(element);
-      TableclothMap.update(map, ~[@ns.namedArgLoc] key, ~f=[@ns.namedArgLoc] x =>
+      TableclothMap.update(map, ~key=[@ns.namedArgLoc] key, ~f=[@ns.namedArgLoc] x =>
         switch (x) {
         | None => Some([element])
         | Some(elements) => Some([element, ...elements])
