@@ -17,6 +17,7 @@ dev-repo: "git://github.com/darklang/tablecloth-melange"
 depends: [
   "ocaml"
   "dune"
+  "reason"
   "melange"
 
   "melange-jest" {withtest}
