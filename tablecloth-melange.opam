@@ -18,7 +18,6 @@ depends: [
   "ocaml"
   "dune"
   "melange"
-  "rescript-syntax"
 
   "melange-jest" {withtest}
 ]
