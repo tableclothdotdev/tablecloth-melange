@@ -14,10 +14,7 @@
     "Utility"
   ],
   "license": "MIT",
-  "devDependencies": {
-    "@glennsl/rescript-jest": "^0.10.0",
-    "rescript": "11.0.0"
-  },
+  "devDependencies": {},
   "scripts": {
     "clean": "rescript clean",
     "build": "rescript build -with-deps",
