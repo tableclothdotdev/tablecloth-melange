@@ -56,7 +56,7 @@ module Poly = {
          {
            type nonrec t = a;
            type nonrec identity = identity;
-           let cmp = Obj.magic(Pervasives.compare);
+           let cmp = Obj.magic(Stdlib.compare);
          }),
     );
   let fromList = l => fromArray(Array.of_list(l));

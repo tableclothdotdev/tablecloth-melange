@@ -90,7 +90,7 @@ module Poly = {
          {
            type nonrec t = k;
            type nonrec identity = identity;
-           let cmp = Obj.magic(Pervasives.compare);
+           let cmp = Obj.magic(Stdlib.compare);
          }),
     );
   let empty = () => fromArray([||]);
