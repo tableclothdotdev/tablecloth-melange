@@ -1,10 +1,9 @@
 module Coordinate = {
-  type t = (int, int)
-}
-
+  type nonrec t = (int, int);
+};
 module Student = {
-  type t = {
+  type nonrec t = {
     id: int,
     name: string,
-  }
-}
+  };
+};
