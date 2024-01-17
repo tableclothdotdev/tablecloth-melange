@@ -61,15 +61,15 @@ let negativeInfinity = neg_infinity;
 let e = Js.Math._E;
 let pi = Js.Math._PI;
 let epsilon = epsilon_float;
-[@scope "Number"] [@val] external largestValue: t = "MAX_VALUE";
-[@scope "Number"] [@val] external smallestValue: t = "MIN_VALUE";
-[@scope "Number"] [@val] external maximumSafeInteger: t = "MAX_SAFE_INTEGER";
-[@scope "Number"] [@val] external minimumSafeInteger: t = "MIN_SAFE_INTEGER";
+[@scope "Number"] external largestValue: t = "MAX_VALUE";
+[@scope "Number"] external smallestValue: t = "MIN_VALUE";
+[@scope "Number"] external maximumSafeInteger: t = "MAX_SAFE_INTEGER";
+[@scope "Number"] external minimumSafeInteger: t = "MIN_SAFE_INTEGER";
 let isNaN = t => Js.Float.isNaN(t);
 let isFinite = t => Js.Float.isFinite(t);
 let isInfinite = n => !Js.Float.isFinite(n) && !isNaN(n);
-[@scope "Number"] [@val] external isInteger: t => bool = "isInteger";
-[@scope "Number"] [@val] external isSafeInteger: t => bool = "isSafeInteger";
+[@scope "Number"] external isInteger: t => bool = "isInteger";
+[@scope "Number"] external isSafeInteger: t => bool = "isSafeInteger";
 let maximum = (x, y) =>
   if (isNaN(x) || isNaN(y)) {
     nan;
