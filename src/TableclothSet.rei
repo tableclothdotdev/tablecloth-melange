@@ -349,3 +349,42 @@ module Int: {
   */
   external fromList: list(int) => t;
 }
+/** Construct sets of {!String}s */
+module String: {
+  type identity;
+
+  type t = t(TableclothString.t, identity);
+
+  /** A set with nothing in it. */
+  external empty: t;
+
+  /** Create a set of a single {!String}.
+
+      {2 Examples}
+
+      {[
+      Set.String.singleton("Bat")->Set.toArray == ["Bat"]
+    ]}
+  */
+  external singleton: string => t;
+
+  /** Create a set from an {!Array}.
+
+      {2 Examples}
+
+      {[
+      Set.String.fromArray(["a", "b", "g", "b", "g", "a", "a"])->Set.toArray == ["a", "b", "g"]
+    ]}
+  */
+  external fromArray: array(string) => t;
+
+  /** Create a set from a {!List}.
+
+      {2 Examples}
+
+      {[
+      Set.String.fromList(["a", "b", "g", "b", "g", "a", "a"])->Set.toArray == ["a", "b", "g"]
+    ]}
+  */
+  external fromList: list(string) => t;
+}
