@@ -469,3 +469,28 @@ module Poly: {
   /** Create a map from a {!List} of key-value tuples. */
   external fromList: list(('key, 'value)) => t('key, 'value);
 }
+/** Construct a Map with {!Int}s for keys. */
+module Int: {
+  type identity;
+
+  type t('value) = t(TableclothInt.t, 'value, identity);
+
+  /** A map with nothing in it. */
+  external empty: t('value);
+
+  /** Create a map from a key and value.
+
+      {2 Examples}
+
+      {[
+      Map.Int.singleton(~key=1, ~value="Ant")->Map.toArray == [(1, "Ant")]
+    ]}
+  */
+  external singleton: (~key: int, ~value: 'value) => t('value);
+
+  /** Create a map from an {!Array} of key-value tuples. */
+  external fromArray: array((int, 'value)) => t('value);
+
+  /** Create a map of a {!List} of key-value tuples. */
+  external fromList: list((int, 'value)) => t('value);
+}
