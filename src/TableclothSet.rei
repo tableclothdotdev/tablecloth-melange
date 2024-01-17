@@ -266,8 +266,6 @@ external forEach: (t('a, _), ~f: [@ns.namedArgLoc] ('a => unit)) => unit;
 external toArray: t('a, _) => array('a);
 /** Converts a set into a {!List}. */
 external toList: t('a, _) => list('a);
-
-
 /** Construct sets which can hold any data type using the polymorphic [compare] function. */
 module Poly: {
   type identity;
@@ -311,4 +309,43 @@ module Poly: {
     ]}
   */
   let fromList: list('a) => t('a);
+}
+/** Construct sets of {!Int}s */
+module Int: {
+  type identity;
+
+  type t = t(TableclothInt.t, identity);
+
+  /** A set with nothing in it. */
+  external empty: t;
+
+  /** Create a set from a single {!Int}
+
+    {2 Examples}
+
+    {[
+      Set.Int.singleton(5)->Set.toArray == [5]
+    ]}
+  */
+  external singleton: int => t;
+
+  /** Create a set from an {!Array}
+
+      {2 Examples}
+
+      {[
+      Set.Int.fromArray([1, 2, 3, 3, 2, 1, 7])->Set.toArray == [1, 2, 3, 7]
+    ]}
+  */
+  external fromArray: array(int) => t;
+
+  /** Create a set from a {!List}
+
+      {2 Examples}
+
+      {[
+      Set.Int.fromList(list{1, 2, 3, 3, 2, 1, 7})->Set.toArray == [1, 2, 3, 7]
+    ]}
+  */
+  external fromList: list(int) => t;
 }
