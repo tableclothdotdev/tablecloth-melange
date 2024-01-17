@@ -1,11 +1,11 @@
-# Tablecloth-rescript
+# Tablecloth-melange
 
 [![CircleCI](https://circleci.com/gh/darklang/tablecloth.svg?style=shield)](https://circleci.com/gh/darklang/tablecloth)
 [![Npm](https://badge.fury.io/js/tablecloth-rescript.svg)](https://www.npmjs.com/package/tablecloth-rescript)
 
 Tablecloth is a library that shims over various standard libraries so they have the same function and module names, which using idiomatic types and patterns in each language.
 
-This is the Rescript implementation, which uses Belt, pipe-first, and camelCase.
+This is the Melange implementation, which uses Belt, pipe-first, and camelCase.
 
 **Tablecloth is alpha-quality software, and is pre-1.0. It is currently undergoing
 some significant shifts and some libraries listed below are not available yet.
@@ -19,13 +19,9 @@ Discord](https://www.tablecloth.dev/discord-invite).
 
 **Note: these instructions are for the upcoming new version of tablecloth**
 
-Install via npm by:
+Install via opam by:
 
-`npm install tablecloth-rescript`
-
-Then add to your `bsconfig.json` file:
-
-`"bs-dependencies" : ["tablecloth-rescript"]`
+`opam install tablecloth-melange`
 
 ## Usage
 
@@ -46,7 +42,7 @@ let () =
 
 ## Supported versions
 
-Tablecloth supports Rescript 9 and 10. [Older versions of Tablecloth](https://www.npmjs.com/package/tablecloth-bucklescript) supported older versions of bs-platform.
+Tablecloth is tested on OCaml 5.1.0 and Melange 2.1.0.
 
 ### Development
 
