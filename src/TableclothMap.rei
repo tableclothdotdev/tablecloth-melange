@@ -494,3 +494,28 @@ module Int: {
   /** Create a map of a {!List} of key-value tuples. */
   external fromList: list((int, 'value)) => t('value);
 }
+/** Construct a Map with {!String}s for keys. */
+module String: {
+  type identity;
+
+  type t('value) = t(TableclothString.t, 'value, identity);
+
+  /** A map with nothing in it. */
+  external empty: t('value);
+
+  /** Create a map from a key and value.
+
+      {2 Examples}
+
+      {[
+      Map.String.singleton(~key="Ant", ~value=1)->Map.toArray == [("Ant", 1)]
+    ]}
+  */
+  external singleton: (~key: string, ~value: 'value) => t('value);
+
+  /** Create a map from an {!Array} of key-value tuples. */
+  external fromArray: array((string, 'value)) => t('value);
+
+  /** Create a map from a {!List} of key-value tuples. */
+  external fromList: list((string, 'value)) => t('value);
+}
