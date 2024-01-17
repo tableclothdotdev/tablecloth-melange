@@ -17,7 +17,7 @@ type nonrec t('a, 'b, 'c) = ('a, 'b, 'c);
       ]
    ]}
 */
-external make: ('a, 'b, 'c) => ('a, 'b, 'c) = ;
+external make: ('a, 'b, 'c) => ('a, 'b, 'c);
 /** Create a tuple from the first two elements of an {!Array}.
 
     If the array is longer than three elements, the extra elements are ignored.
@@ -32,7 +32,7 @@ external make: ('a, 'b, 'c) => ('a, 'b, 'c) = ;
       Tuple3.fromArray([4, 5, 6, 7]) == Some(4, 5, 6)
     ]}
 */
-external fromArray: array('a) => option(('a, 'a, 'a)) = ;
+external fromArray: array('a) => option(('a, 'a, 'a));
 /** Create a tuple from the first two elements of a {!List}.
 
     If the list is longer than two elements, the extra elements are ignored.
@@ -47,7 +47,7 @@ external fromArray: array('a) => option(('a, 'a, 'a)) = ;
       Tuple3.fromList(list{4, 5, 6, 7}) == Some(4, 5, 6)
     ]}
 */
-external fromList: list('a) => option(('a, 'a, 'a)) = ;
+external fromList: list('a) => option(('a, 'a, 'a));
 /** Extract the first value from a tuple.
 
     {2 Examples}
@@ -57,7 +57,7 @@ external fromList: list('a) => option(('a, 'a, 'a)) = ;
       Tuple3.first(("john", "danger", "doe")) == "john"
     ]}
 */
-external first: (('a, 'b, 'c)) => 'a = ;
+external first: (('a, 'b, 'c)) => 'a;
 /** Extract the second value from a tuple.
 
     {2 Examples}
@@ -67,7 +67,7 @@ external first: (('a, 'b, 'c)) => 'a = ;
       Tuple3.second(("john", "danger", "doe")) == "danger"
     ]}
 */
-external second: (('a, 'b, 'c)) => 'b = ;
+external second: (('a, 'b, 'c)) => 'b;
 /** Extract the third value from a tuple.
 
     {2 Examples}
@@ -77,7 +77,7 @@ external second: (('a, 'b, 'c)) => 'b = ;
       Tuple3.third(("john", "danger", "doe")) == "doe"
     ]}
 */
-external third: (('a, 'b, 'c)) => 'c = ;
+external third: (('a, 'b, 'c)) => 'c;
 /** Extract the first and second values of a {!Tuple3} as a {!Tuple2}.
 
     {2 Examples}
@@ -87,7 +87,7 @@ external third: (('a, 'b, 'c)) => 'c = ;
       Tuple3.initial(("john", 16, true)) == ("john", 16)
     ]}
 */
-external initial: (('a, 'b, 'c)) => ('a, 'b) = ;
+external initial: (('a, 'b, 'c)) => ('a, 'b);
 /** Extract the second and third values of a {!Tuple3} as a {!Tuple2}.
 
     {2 Examples}
@@ -97,7 +97,7 @@ external initial: (('a, 'b, 'c)) => ('a, 'b) = ;
       Tuple3.tail(("john", 16, true)) == (16, true)
     ]}
 */
-external tail: (('a, 'b, 'c)) => ('b, 'c) = ;
+external tail: (('a, 'b, 'c)) => ('b, 'c);
 /** {1 Modify} */;
 /** Move each value in the tuple one position to the left, moving the value in the first position into the last position.
 
@@ -108,7 +108,7 @@ external tail: (('a, 'b, 'c)) => ('b, 'c) = ;
       Tuple3.rotateLeft(("was", "stressed", "then")) == ("stressed", "then", "was")
     ]}
 */
-external rotateLeft: (('a, 'b, 'c)) => ('b, 'c, 'a) = ;
+external rotateLeft: (('a, 'b, 'c)) => ('b, 'c, 'a);
 /** Move each value in the tuple one position to the right, moving the value in the last position into the first position.
 
     {2 Examples}
@@ -118,7 +118,7 @@ external rotateLeft: (('a, 'b, 'c)) => ('b, 'c, 'a) = ;
       Tuple3.rotateRight(("was", "stressed", "then")) == ("then", "was", "stressed")
     ]}
 */
-external rotateRight: (('a, 'b, 'c)) => ('c, 'a, 'b) = ;
+external rotateRight: (('a, 'b, 'c)) => ('c, 'a, 'b);
 /** Transform the first value in a tuple.
 
     {2 Examples}
@@ -129,7 +129,7 @@ external rotateRight: (('a, 'b, 'c)) => ('c, 'a, 'b) = ;
     ]}
 */
 external mapFirst:
-  (('a, 'b, 'c), ~f: [@ns.namedArgLoc] ('a => 'x)) => ('x, 'b, 'c) =
+  (('a, 'b, 'c), ~f: [@ns.namedArgLoc] ('a => 'x)) => ('x, 'b, 'c)
   ;
 /** Transform the second value in a tuple.
 
@@ -141,7 +141,7 @@ external mapFirst:
     ]}
 */
 external mapSecond:
-  (('a, 'b, 'c), ~f: [@ns.namedArgLoc] ('b => 'y)) => ('a, 'y, 'c) =
+  (('a, 'b, 'c), ~f: [@ns.namedArgLoc] ('b => 'y)) => ('a, 'y, 'c)
   ;
 /** Transform the third value in a tuple.
 
@@ -152,7 +152,7 @@ external mapSecond:
     ]}
 */
 external mapThird:
-  (('a, 'b, 'c), ~f: [@ns.namedArgLoc] ('c => 'z)) => ('a, 'b, 'z) =
+  (('a, 'b, 'c), ~f: [@ns.namedArgLoc] ('c => 'z)) => ('a, 'b, 'z)
   ;
 /** Transform each value in a tuple by applying [f] to the {!first} value, [g] to the {!second} value and [h] to the {!third} value.
 
@@ -174,7 +174,7 @@ external mapEach:
     ~g: [@ns.namedArgLoc] ('b => 'y),
     ~h: [@ns.namedArgLoc] ('c => 'z)
   ) =>
-  ('x, 'y, 'z) =
+  ('x, 'y, 'z)
   ;
 /** Transform all the values of a tuple using the same function.
 
@@ -188,7 +188,7 @@ external mapEach:
     ]}
 */
 external mapAll:
-  (('a, 'a, 'a), ~f: [@ns.namedArgLoc] ('a => 'b)) => ('b, 'b, 'b) =
+  (('a, 'a, 'a), ~f: [@ns.namedArgLoc] ('a => 'b)) => ('b, 'b, 'b)
   ;
 /** Turns a tuple into a {!List} of length three.
 
@@ -201,7 +201,7 @@ external mapAll:
       Tuple3.toArray(("was", "stressed", "then")) == ["was", "stressed", "then"]
     ]}
 */
-external toArray: (('a, 'a, 'a)) => array('a) = ;
+external toArray: (('a, 'a, 'a)) => array('a);
 /** Turns a tuple into a {!List} of length three.
 
     This function can only be used on tuples which have the same type for each value.
@@ -213,7 +213,7 @@ external toArray: (('a, 'a, 'a)) => array('a) = ;
       Tuple3.toList(("was", "stressed", "then")) == list{"was", "stressed", "then"}
     ]}
 */
-external toList: (('a, 'a, 'a)) => list('a) = ;
+external toList: (('a, 'a, 'a)) => list('a);
 /** Test two {!Tuple3}s for equality, using the provided functions to test the
     first, second and third components.
 
@@ -232,7 +232,7 @@ external equal:
     ('b, 'b) => bool,
     ('c, 'c) => bool
   ) =>
-  bool =
+  bool
   ;
 /** Compare two {!Tuple3}s, using [f] to compare the first
     components then, if the first components are equal, the second components are compared with [g],
@@ -254,5 +254,5 @@ external compare:
     ~g: [@ns.namedArgLoc] (('b, 'b) => int),
     ~h: [@ns.namedArgLoc] (('c, 'c) => int)
   ) =>
-  int =
+  int
   ;

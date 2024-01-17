@@ -38,7 +38,7 @@ type nonrec t = char;
       Char.fromCode(-1) == None
     ]}
 */
-external fromCode: int => option(char) = ;
+external fromCode: int => option(char);
 /** Converts a string to character.
 
     Returns [None] when the [string] isn't of length one.
@@ -53,7 +53,7 @@ external fromCode: int => option(char) = ;
       Char.fromString(" a") == None
     ]}
 */
-external fromString: string => option(char) = ;
+external fromString: string => option(char);
 /** Detect lower case ASCII characters.
 
     {2 Examples}
@@ -67,7 +67,7 @@ external fromString: string => option(char) = ;
       Char.isLowercase('-') == false
     ]}
 */
-external isLowercase: char => bool = ;
+external isLowercase: char => bool;
 /** Detect upper case ASCII characters.
 
     {2 Examples}
@@ -81,7 +81,7 @@ external isLowercase: char => bool = ;
       Char.isUppercase('-') == false
     ]}
 */
-external isUppercase: char => bool = ;
+external isUppercase: char => bool;
 /** Detect upper and lower case ASCII alphabetic characters.
 
     {2 Examples}
@@ -95,7 +95,7 @@ external isUppercase: char => bool = ;
       Char.isLetter('-') == false
     ]}
 */
-external isLetter: char => bool = ;
+external isLetter: char => bool;
 /** Detect when a character is a number.
 
     {2 Examples}
@@ -108,7 +108,7 @@ external isLetter: char => bool = ;
       Char.isDigit('b') == false
     ]}
 */
-external isDigit: char => bool = ;
+external isDigit: char => bool;
 /** Detect upper case, lower case and digit ASCII characters.
 
     {2 Examples}
@@ -123,7 +123,7 @@ external isDigit: char => bool = ;
       Char.isAlphanumeric('-') == false
     ]}
 */
-external isAlphanumeric: char => bool = ;
+external isAlphanumeric: char => bool;
 /** Detect if a character is a {{: https://en.wikipedia.org/wiki/ASCII#Printable_characters } printable } character
 
     A Printable character has a {!Char.toCode} in the range 32 to 127, inclusive ([' '] to ['~']).
@@ -138,7 +138,7 @@ external isAlphanumeric: char => bool = ;
       Char.isPrintable('') == false
     ]}
 */
-external isPrintable: char => bool = ;
+external isPrintable: char => bool;
 /** Detect one of the following characters:
     - ['	'] (tab)
     - ['
@@ -157,7 +157,7 @@ external isPrintable: char => bool = ;
       Char.isWhitespace('G') == false
     ]}
 */
-external isWhitespace: char => bool = ;
+external isWhitespace: char => bool;
 /** Converts an ASCII character to lower case, preserving non alphabetic ASCII characters.
 
     {2 Examples}
@@ -168,7 +168,7 @@ external isWhitespace: char => bool = ;
       Char.toLowercase('7') == '7'
     ]}
 */
-external toLowercase: char => char = ;
+external toLowercase: char => char;
 /** Convert an ASCII character to upper case, preserving non alphabetic ASCII characters.
 
     {2 Examples}
@@ -179,7 +179,7 @@ external toLowercase: char => char = ;
       Char.toUppercase('7') == '7'
     ]}
 */
-external toUppercase: char => char = ;
+external toUppercase: char => char;
 /** Convert [char] to the corresponding ASCII {{: https://en.wikipedia.org/wiki/Code_point } code point}.
 
     {2 Examples}
@@ -189,7 +189,7 @@ external toUppercase: char => char = ;
       Char.toCode('B') == 66
     ]}
 */
-external toCode: char => int = ;
+external toCode: char => int;
 /** Convert a character into a [string].
 
     {2 Examples}
@@ -200,7 +200,7 @@ external toCode: char => int = ;
       Char.toString('7') == "7"
     ]}
 */
-external toString: char => string = ;
+external toString: char => string;
 /** Converts a digit character to its corresponding {!Int}.
 
     Returns [None] when the character isn't a digit.
@@ -214,9 +214,9 @@ external toString: char => string = ;
       Char.toDigit("") == None
     ]}
 */
-external toDigit: char => option(int) = ;
-/** Test two {!Char}s for equality */ external equal: (t, t) => bool = ;
-/** Compare two {!Char}s */ external compare: (t, t) => int = ;
+external toDigit: char => option(int);
+/** Test two {!Char}s for equality */ external equal: (t, t) => bool;
+/** Compare two {!Char}s */ external compare: (t, t) => int;
 /** The unique identity for {!Comparator} */
 type nonrec identity;
-external comparator: TableclothComparator.t(t, identity) = ;
+external comparator: TableclothComparator.t(t, identity);

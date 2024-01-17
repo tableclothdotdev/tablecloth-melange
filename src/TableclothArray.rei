@@ -19,7 +19,7 @@ type nonrec t('a) = array('a);
       Array.singleton("hi") == ["hi"]
     ]}
 */
-external singleton: 'a => t('a) = ;
+external singleton: 'a => t('a);
 /** Creates an array of length [length] with the value [x] populated at each index.
 
     {2 Examples}
@@ -30,7 +30,7 @@ external singleton: 'a => t('a) = ;
       Array.repeat("Why?", ~length=-1) == []
     ]}
 */
-external repeat: ('a, ~length: [@ns.namedArgLoc] int) => t('a) = ;
+external repeat: ('a, ~length: [@ns.namedArgLoc] int) => t('a);
 /** Creates an array containing all of the integers from [from] if it is provided or [0] if not, up to but not including [to].
 
     {2 Examples}
@@ -41,7 +41,7 @@ external repeat: ('a, ~length: [@ns.namedArgLoc] int) => t('a) = ;
       Array.range(3, ~from=-2) == [-2, -1, 0, 1, 2]
     ]}
 */
-external range: (~from: [@ns.namedArgLoc] int=?, int) => t(int) = ;
+external range: (~from: [@ns.namedArgLoc] int=?, int) => t(int);
 /** Initialize an array. [Array.initialize n ~f] creates an array of length [n] with
     the element at index [i] initialized to the result of [(f i)].
 
@@ -52,7 +52,7 @@ external range: (~from: [@ns.namedArgLoc] int=?, int) => t(int) = ;
       Array.initialize(4, ~f=n => n * n) == [0, 1, 4, 9]
     ]}
 */
-external initialize: (int, ~f: [@ns.namedArgLoc] (int => 'a)) => t('a) = ;
+external initialize: (int, ~f: [@ns.namedArgLoc] (int => 'a)) => t('a);
 /** Create an array from a {!List}.
 
     {2 Examples}
@@ -61,7 +61,7 @@ external initialize: (int, ~f: [@ns.namedArgLoc] (int => 'a)) => t('a) = ;
       Array.fromList(list{1, 2, 3}) == [1, 2, 3]
     ]}
 */
-external fromList: list('a) => t('a) = ;
+external fromList: list('a) => t('a);
 /** Create a shallow copy of an array.
 
     {2 Examples}
@@ -85,7 +85,7 @@ external fromList: list('a) => t('a) = ;
       numberGridCopy[1][1] == 9
     ]}
 */
-external clone: t('a) => t('a) = ;
+external clone: t('a) => t('a);
 /** {1 Basic operations} */;
 /** Get the element at the specified index.
 
@@ -114,7 +114,7 @@ external clone: t('a) => t('a) = ;
       animals[2] == "eel"
     ]}
 */
-external get: (t('a), int) => 'a = ;
+external get: (t('a), int) => 'a;
 /** Returns, as an {!Option}, the element at index number [n] of array [a].
 
     Returns [None] if [n] is outside the range [0] to [(Array.length(a) - 1)].
@@ -126,7 +126,7 @@ external get: (t('a), int) => 'a = ;
       Array.getAt([], ~index=0) == None
     ]}
 */
-external getAt: (t('a), ~index: [@ns.namedArgLoc] int) => option('a) = ;
+external getAt: (t('a), ~index: [@ns.namedArgLoc] int) => option('a);
 /** Modifies an array in place, replacing the element at [index] with [value].
 
     You should prefer either to write
@@ -151,10 +151,10 @@ external getAt: (t('a), ~index: [@ns.namedArgLoc] int) => option('a) = ;
       numbers  == [1, 1, 0]
     ]}
 */
-external set: (t('a), int, 'a) => unit = ;
+external set: (t('a), int, 'a) => unit;
 /** Like {!set} but with labelled arguments. */
 external setAt:
-  (t('a), ~index: [@ns.namedArgLoc] int, ~value: [@ns.namedArgLoc] 'a) => unit =
+  (t('a), ~index: [@ns.namedArgLoc] int, ~value: [@ns.namedArgLoc] 'a) => unit
   ;
 /** Get the first element of an array.
 
@@ -168,7 +168,7 @@ external setAt:
       Array.first([]) == None
     ]}
 */
-external first: t('a) => option('a) = ;
+external first: t('a) => option('a);
 /** Get the last element of an array.
 
     Returns [None] if the array is empty.
@@ -181,7 +181,7 @@ external first: t('a) => option('a) = ;
       Array.last([]) == None
     ]}
 */
-external last: t('a) => option('a) = ;
+external last: t('a) => option('a);
 /** Get a sub-section of an array. [from] is a zero-based index where we will start our slice.
 
     The [to_] is a zero-based index that indicates the end of the slice.
@@ -203,7 +203,7 @@ external last: t('a) => option('a) = ;
 */
 external slice:
   (~to_: [@ns.namedArgLoc] int=?, t('a), ~from: [@ns.namedArgLoc] int) =>
-  t('a) =
+  t('a)
   ;
 /** Swaps the values at the provided indicies.
 
@@ -217,7 +217,7 @@ external slice:
       Array.swap([1, 2, 3], 1, 2) == [1, 3, 2]
     ]}
 */
-external swap: (t('a), int, int) => unit = ;
+external swap: (t('a), int, int) => unit;
 /** Reverses an array {b in place}, mutating the existing array.
 
     {2 Examples}
@@ -228,7 +228,7 @@ external swap: (t('a), int, int) => unit = ;
       numbers == [3, 2, 1]
     ]}
 */
-external reverse: t('a) => unit = ;
+external reverse: t('a) => unit;
 /** Sort in place, modifying the existing array, using the provided [compare] function to determine order.
 
     The time and space complexity of the sort cannot be guaranteed as it depends on the implementation.
@@ -239,8 +239,7 @@ external reverse: t('a) => unit = ;
       Array.sort([5, 6, 8, 3, 6], ~compare) == [3, 5, 6, 6, 8]
     ]}
 */
-external sort: (t('a), ~compare: [@ns.namedArgLoc] (('a, 'a) => int)) => unit =
-  ;
+external sort: (t('a), ~compare: [@ns.namedArgLoc] (('a, 'a) => int)) => unit ;
 /** {1 Query} */;
 /** Check if an array is empty.
 
@@ -251,7 +250,7 @@ external sort: (t('a), ~compare: [@ns.namedArgLoc] (('a, 'a) => int)) => unit =
       Array.isEmpty([]) == true
     ]}
 */
-external isEmpty: t('a) => bool = ;
+external isEmpty: t('a) => bool;
 /** Return the length of an array.
 
     {2 Examples}
@@ -261,7 +260,7 @@ external isEmpty: t('a) => bool = ;
       Array.length([]) == 0
     ]}
 */
-external length: t('a) => int = ;
+external length: t('a) => int;
 /** Determine if [f] returns true for [any] values in an array.
 
     Iteration is stopped as soon as [f] returns [true].
@@ -274,7 +273,7 @@ external length: t('a) => int = ;
       Array.any([], ~f=Int.isEven) == false
     ]}
 */
-external any: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => bool = ;
+external any: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => bool;
 /** Determine if [f] returns true for [all] values in an array.
 
     Iteration is stopped as soon as [f] returns [false].
@@ -287,7 +286,7 @@ external any: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => bool = ;
       Array.all([], ~f=Int.isEven) == true
     ]}
 */
-external all: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => bool = ;
+external all: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => bool;
 /** Count the number of elements which function [f] will return [true].
 
     {2 Examples}
@@ -296,7 +295,7 @@ external all: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => bool = ;
       Array.count([7, 5, 8, 6], ~f=Int.isEven) == 2
     ]}
 */
-external count: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => int = ;
+external count: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => int;
 /** Returns, as an {!Option}, the first element for which [f] evaluates to [true].
 
     If [f] doesn't return [true] for any of the elements [find] will return [None]
@@ -309,7 +308,7 @@ external count: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => int = ;
       Array.find([], ~f=Int.isEven) == None
     ]}
 */
-external find: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => option('a) = ;
+external find: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => option('a);
 /** Similar to {!Array.find} but [f] is also called with the current index, and the return value will be a tuple of the index the passing value was found at and the passing value.
 
     {2 Examples}
@@ -319,7 +318,7 @@ external find: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => option('a) = ;
     ]}
 */
 external findIndex:
-  (t('a), ~f: [@ns.namedArgLoc] ((int, 'a) => bool)) => option((int, 'a)) =
+  (t('a), ~f: [@ns.namedArgLoc] ((int, 'a) => bool)) => option((int, 'a))
   ;
 /** Test if an array contains the specified element using the provided [equal] to test for equality.
 
@@ -330,7 +329,7 @@ external findIndex:
     ]}
 */
 external includes:
-  (t('a), 'a, ~equal: [@ns.namedArgLoc] (('a, 'a) => bool)) => bool =
+  (t('a), 'a, ~equal: [@ns.namedArgLoc] (('a, 'a) => bool)) => bool
   ;
 /** Find the smallest element using the provided [compare] function.
 
@@ -344,7 +343,7 @@ external includes:
     ]}
 */
 external minimum:
-  (t('a), ~compare: [@ns.namedArgLoc] (('a, 'a) => int)) => option('a) =
+  (t('a), ~compare: [@ns.namedArgLoc] (('a, 'a) => int)) => option('a)
   ;
 /** Find the largest element using the provided [compare] function.
 
@@ -358,7 +357,7 @@ external minimum:
     ]}
 */
 external maximum:
-  (t('a), ~compare: [@ns.namedArgLoc] (('a, 'a) => int)) => option('a) =
+  (t('a), ~compare: [@ns.namedArgLoc] (('a, 'a) => int)) => option('a)
   ;
 /** Find a {!Tuple2} of the {!minimum} and {!maximum} in a single pass.
 
@@ -373,7 +372,7 @@ external maximum:
     ]}
 */
 external extent:
-  (t('a), ~compare: [@ns.namedArgLoc] (('a, 'a) => int)) => option(('a, 'a)) =
+  (t('a), ~compare: [@ns.namedArgLoc] (('a, 'a) => int)) => option(('a, 'a))
   ;
 /** Calculate the sum of an array using the provided modules [zero] value and [add] function.
 
@@ -395,7 +394,7 @@ external extent:
     ) == "abc"
     ]}
 */
-external sum: (t('a), (module TableclothContainer.Sum with type t = 'a)) => 'a =
+external sum: (t('a), (module TableclothContainer.Sum with type t = 'a)) => 'a
   ;
 /** {1 Transform} */;
 /** Create a new array which is the result of applying a function [f] to every element.
@@ -406,7 +405,7 @@ external sum: (t('a), (module TableclothContainer.Sum with type t = 'a)) => 'a =
       Array.map([1.0, 4.0, 9.0], ~f=Float.squareRoot) == [1.0, 2.0, 3.0]
     ]}
 */
-external map: (t('a), ~f: [@ns.namedArgLoc] ('a => 'b)) => t('b) = ;
+external map: (t('a), ~f: [@ns.namedArgLoc] ('a => 'b)) => t('b);
 /** Apply a function [f] to every element with its index as the first argument.
 
     {2 Examples}
@@ -416,7 +415,7 @@ external map: (t('a), ~f: [@ns.namedArgLoc] ('a => 'b)) => t('b) = ;
     ]}
 */
 external mapWithIndex:
-  (t('a), ~f: [@ns.namedArgLoc] ((int, 'a) => 'b)) => t('b) =
+  (t('a), ~f: [@ns.namedArgLoc] ((int, 'a) => 'b)) => t('b)
   ;
 /** Keep elements where function [f] will return [true].
 
@@ -426,7 +425,7 @@ external mapWithIndex:
       Array.filter([1, 2, 3, 4, 5, 6], ~f=Int.isEven) == [2, 4, 6]
     ]}
 */
-external filter: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => t('a) = ;
+external filter: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => t('a);
 /** Allows you to combine {!map} and {!filter} into a single pass.
 
     The output array only contains elements for which [f] returns [Some].
@@ -449,7 +448,7 @@ external filter: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => t('a) = ;
     ]}
 */
 external filterMap:
-  (t('a), ~f: [@ns.namedArgLoc] ('a => option('b))) => t('b) =
+  (t('a), ~f: [@ns.namedArgLoc] ('a => option('b))) => t('b)
   ;
 /** {!map} [f] onto an array and {!flatten} the resulting arrays.
 
@@ -459,7 +458,7 @@ external filterMap:
       Array.flatMap([1, 2, 3], ~f=n => [n, n]) == [1, 1, 2, 2, 3, 3]
     ]}
 */
-external flatMap: (t('a), ~f: [@ns.namedArgLoc] ('a => t('b))) => t('b) = ;
+external flatMap: (t('a), ~f: [@ns.namedArgLoc] ('a => t('b))) => t('b);
 /** Just as {{: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce } Array.prototype.reduce() } from the JS,
     [fold] will produce a new value from an array.
 
@@ -515,7 +514,7 @@ external fold:
     ~initial: [@ns.namedArgLoc] 'b,
     ~f: [@ns.namedArgLoc] (('b, 'a) => 'b)
   ) =>
-  'b =
+  'b
   ;
 /** This method is like {!fold} except that it iterates over the elements of the array from last to first.
 
@@ -532,7 +531,7 @@ external foldRight:
     ~initial: [@ns.namedArgLoc] 'b,
     ~f: [@ns.namedArgLoc] (('b, 'a) => 'b)
   ) =>
-  'b =
+  'b
   ;
 /** Creates a new array which is the result of appending the second array onto the end of the first.
 
@@ -544,7 +543,7 @@ external foldRight:
       Array.append(fourtyTwos, eightyOnes) == [42, 42, 81, 81, 81]
     ]}
 */
-external append: (t('a), t('a)) => t('a) = ;
+external append: (t('a), t('a)) => t('a);
 /** Flatten an array of arrays into a single array:
 
     {2 Examples}
@@ -553,7 +552,7 @@ external append: (t('a), t('a)) => t('a) = ;
       Array.flatten([[1, 2], [3], [4, 5]]) == [1, 2, 3, 4, 5]
     ]}
 */
-external flatten: t(t('a)) => t('a) = ;
+external flatten: t(t('a)) => t('a);
 /** Combine two arrays by merging each pair of elements into a {!Tuple2}.
 
     If one array is longer, the extra elements are dropped.
@@ -566,7 +565,7 @@ external flatten: t(t('a)) => t('a) = ;
       Array.zip([1, 2, 3, 4, 5], ["Dog", "Eagle", "Ferret"]) == [(1, "Dog"), (2, "Eagle"), (3, "Ferret")]
     ]}
 */
-external zip: (t('a), t('b)) => t(('a, 'b)) = ;
+external zip: (t('a), t('b)) => t(('a, 'b));
 /** Combine two arrays, using [f] to combine each pair of elements.
 
     If one array is longer, the extra elements are dropped.
@@ -583,7 +582,7 @@ external zip: (t('a), t('b)) => t(('a, 'b)) = ;
     ]}
 */
 external map2:
-  (t('a), t('b), ~f: [@ns.namedArgLoc] (('a, 'b) => 'c)) => t('c) =
+  (t('a), t('b), ~f: [@ns.namedArgLoc] (('a, 'b) => 'c)) => t('c)
   ;
 /** Combine three arrays, using [f] to combine each trio of elements.
 
@@ -603,7 +602,7 @@ external map2:
 */
 external map3:
   (t('a), t('b), t('c), ~f: [@ns.namedArgLoc] (('a, 'b, 'c) => 'd)) =>
-  t('d) =
+  t('d)
   ;
 /** {1 Deconstruct} */;
 /** Split an array into a {!Tuple2} of arrays. Values which [f] returns true for will end up in {!Tuple2.first}.
@@ -615,7 +614,7 @@ external map3:
     ]}
 */
 external partition:
-  (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => (t('a), t('a)) =
+  (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => (t('a), t('a))
   ;
 /** Divides an array into a {!Tuple2} of arrays.
 
@@ -635,7 +634,7 @@ external partition:
       Array.splitAt([1, 2, 3, 4, 5], ~index=0) == ([], [1, 2, 3, 4, 5])
     ]}
 */
-external splitAt: (t('a), ~index: [@ns.namedArgLoc] int) => (t('a), t('a)) =
+external splitAt: (t('a), ~index: [@ns.namedArgLoc] int) => (t('a), t('a))
   ;
 /** Divides an array at the first element [f] returns [true] for.
 
@@ -654,7 +653,7 @@ external splitAt: (t('a), ~index: [@ns.namedArgLoc] int) => (t('a), t('a)) =
     ]}
 */
 external splitWhen:
-  (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => (t('a), t('a)) =
+  (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => (t('a), t('a))
   ;
 /** Decompose an array of {!Tuple2}s into a {!Tuple2} of arrays.
 
@@ -664,7 +663,7 @@ external splitWhen:
       Array.unzip([(0, true), (17, false), (1337, true)]) == ([0, 17, 1337], [true, false, true])
     ]}
 */
-external unzip: t(('a, 'b)) => (t('a), t('b)) = ;
+external unzip: t(('a, 'b)) => (t('a), t('b));
 /** {1 Iterate} */;
 /** Iterates over the elements of invokes [f] for each element.
 
@@ -674,7 +673,7 @@ external unzip: t(('a, 'b)) => (t('a), t('b)) = ;
       Array.forEach([1, 2, 3], ~f=int => Js.log(int))
     ]}
 */
-external forEach: (t('a), ~f: [@ns.namedArgLoc] ('a => unit)) => unit = ;
+external forEach: (t('a), ~f: [@ns.namedArgLoc] ('a => unit)) => unit;
 /** Iterates over the elements of invokes [f] for each element.
 
     {2 Examples}
@@ -689,7 +688,7 @@ external forEach: (t('a), ~f: [@ns.namedArgLoc] ('a => unit)) => unit = ;
     ]}
 */
 external forEachWithIndex:
-  (t('a), ~f: [@ns.namedArgLoc] ((int, 'a) => unit)) => unit =
+  (t('a), ~f: [@ns.namedArgLoc] ((int, 'a) => unit)) => unit
   ;
 /** Return all of the [Some] values from an array of options.
 
@@ -700,7 +699,7 @@ external forEachWithIndex:
       Array.values([None, None, None]) == []
     ]}
 */
-external values: t(option('a)) => t('a) = ;
+external values: t(option('a)) => t('a);
 /** Places [sep] between all the elements of the given array.
 
     {2 Examples}
@@ -712,7 +711,7 @@ external values: t(option('a)) => t('a) = ;
       Array.intersperse(~sep=0, []) == []
     ]}
 */
-external intersperse: (t('a), ~sep: [@ns.namedArgLoc] 'a) => t('a) = ;
+external intersperse: (t('a), ~sep: [@ns.namedArgLoc] 'a) => t('a);
 /** Split an array into equally sized chunks.
 
     If there aren't enough elements to make the last 'chunk', those elements are ignored.
@@ -726,7 +725,7 @@ external intersperse: (t('a), ~sep: [@ns.namedArgLoc] 'a) => t('a) = ;
       ]
     ]}
  */
-external chunksOf: (t('a), ~size: [@ns.namedArgLoc] int) => t(t('a)) = ;
+external chunksOf: (t('a), ~size: [@ns.namedArgLoc] int) => t(t('a));
 /** Provides a sliding 'window' of sub-arrays over an array.
 
     The first sub-array starts at index [0] of the array and takes the first [size] elements.
@@ -747,7 +746,7 @@ external chunksOf: (t('a), ~size: [@ns.namedArgLoc] int) => t(t('a)) = ;
 */
 external sliding:
   (~step: [@ns.namedArgLoc] int=?, t('a), ~size: [@ns.namedArgLoc] int) =>
-  t(t('a)) =
+  t(t('a))
   ;
 /** {1 Convert} */;
 /** Converts an array of strings into a {!String}, placing [sep] between each string in the result.
@@ -758,7 +757,7 @@ external sliding:
       Array.join(["Ant", "Bat", "Cat"], ~sep=", ") == "Ant, Bat, Cat"
     ]}
  */
-external join: (t(string), ~sep: [@ns.namedArgLoc] string) => string = ;
+external join: (t(string), ~sep: [@ns.namedArgLoc] string) => string;
 /** Collect elements where function [f] will produce the same key.
 
     Produces a map from ['key] to a {!List} of all elements which produce the same ['key].
@@ -781,7 +780,7 @@ external groupBy:
     TableclothComparator.s('key, 'id),
     ~f: [@ns.namedArgLoc] ('value => 'key)
   ) =>
-  TableclothMap.t('key, list('value), 'id) =
+  TableclothMap.t('key, list('value), 'id)
   ;
 /** Create a {!List} of elements from an array.
 
@@ -792,7 +791,7 @@ external groupBy:
       Array.toList(Array.fromList(list{3, 5, 8})) == list{3, 5, 8}
     ]}
 */
-external toList: t('a) => list('a) = ;
+external toList: t('a) => list('a);
 /** Create an indexed {!List} from an array. Each element of the array will be paired with its index as a {!Tuple2}.
 
     {2 Examples}
@@ -801,9 +800,9 @@ external toList: t('a) => list('a) = ;
       Array.toIndexedList(["cat", "dog"]) == list{(0, "cat"), (1, "dog")}
     ]}
 */
-external toIndexedList: t('a) => list((int, 'a)) = ;
+external toIndexedList: t('a) => list((int, 'a));
 /** Test two arrays for equality using the provided function to test pairs of elements. */
-external equal: (t('a), t('a), ('a, 'a) => bool) => bool = ;
+external equal: (t('a), t('a), ('a, 'a) => bool) => bool;
 /** Compare two arrays using the provided [f] function to compare pairs of elements.
 
     A shorter array is 'less' than a longer one.
@@ -816,4 +815,4 @@ external equal: (t('a), t('a), ('a, 'a) => bool) => bool = ;
       Array.compare([1, 2, 5], [1, 2, 3], Int.compare) == 1
     ]}
 */
-external compare: (t('a), t('a), ('a, 'a) => int) => int = ;
+external compare: (t('a), t('a), ('a, 'a) => int) => int;

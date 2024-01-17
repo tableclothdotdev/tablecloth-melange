@@ -41,7 +41,7 @@ type nonrec t('a) = list('a);
       List.empty->List.length == 0
     ]}
 */
-external empty: t('a) = ;
+external empty: t('a);
 /** Create a list with only one element.
 
     {2 Examples}
@@ -51,7 +51,7 @@ external empty: t('a) = ;
       List.singleton("hi") == list{"hi"}
     ]}
 */
-external singleton: 'a => t('a) = ;
+external singleton: 'a => t('a);
 /** Creates a list of length [times] with the value [x] populated at each index.
 
     {2 Examples}
@@ -62,7 +62,7 @@ external singleton: 'a => t('a) = ;
       List.repeat("Why?", ~times=-1) == list{}
     ]}
 */
-external repeat: ('a, ~times: [@ns.namedArgLoc] int) => t('a) = ;
+external repeat: ('a, ~times: [@ns.namedArgLoc] int) => t('a);
 /** Creates a list containing all of the integers from [from] if it is provided or [0] if not, up to but not including [to]
 
     {2 Examples}
@@ -73,7 +73,7 @@ external repeat: ('a, ~times: [@ns.namedArgLoc] int) => t('a) = ;
       List.range(3, ~from=-2) == list{-2, -1, 0, 1, 2}
     ]}
 */
-external range: (~from: [@ns.namedArgLoc] int=?, int) => t(int) = ;
+external range: (~from: [@ns.namedArgLoc] int=?, int) => t(int);
 /** Initialize a list.
 
     [List.initialize(n, ~f)] creates a list of length [n] by setting the element at position [index] to be [f(index)].
@@ -85,7 +85,7 @@ external range: (~from: [@ns.namedArgLoc] int=?, int) => t(int) = ;
       List.initialize(4, ~f=index => index * index) == list{0, 1, 4, 9}
     ]}
 */
-external initialize: (int, ~f: [@ns.namedArgLoc] (int => 'a)) => t('a) = ;
+external initialize: (int, ~f: [@ns.namedArgLoc] (int => 'a)) => t('a);
 /** Create a list from an {!Array}.
 
     {2 Examples}
@@ -94,7 +94,7 @@ external initialize: (int, ~f: [@ns.namedArgLoc] (int => 'a)) => t('a) = ;
       List.fromArray([1, 2, 3]) == list{1, 2, 3}
     ]}
 */
-external fromArray: array('a) => t('a) = ;
+external fromArray: array('a) => t('a);
 /** {1 Basic operations} */;
 /** Returns, as an {!Option}, the first element of a list.
 
@@ -107,7 +107,7 @@ external fromArray: array('a) => t('a) = ;
       List.head(list{}) == None
     ]}
 */
-external head: t('a) => option('a) = ;
+external head: t('a) => option('a);
 /** Returns, as an {!Option}, a list without its first element.
 
     If the list is empty, returns [None]
@@ -120,7 +120,7 @@ external head: t('a) => option('a) = ;
       List.tail(list{}) == None
     ]}
 */
-external tail: t('a) => option(t('a)) = ;
+external tail: t('a) => option(t('a));
 /** Prepend a value to the front of a list.
 
     The spread syntax [...] operator can also be used.
@@ -135,7 +135,7 @@ external tail: t('a) => option(t('a)) = ;
       list{1, 2, ...b} == list{1, 2, 3, 4}
    ]}
 */
-external cons: (t('a), 'a) => t('a) = ;
+external cons: (t('a), 'a) => t('a);
 /** Attempt to take the first [count] elements of a list.
 
    If the list has fewer than [count] elements, returns the entire list.
@@ -151,7 +151,7 @@ external cons: (t('a), 'a) => t('a) = ;
       List.take(list{1, 2, 3, 4}, ~count=-1) == list{}
     ]}
 */
-external take: (t('a), ~count: [@ns.namedArgLoc] int) => t('a) = ;
+external take: (t('a), ~count: [@ns.namedArgLoc] int) => t('a);
 /** Take elements from a list until [f] returns [false].
 
     {2 Examples}
@@ -162,7 +162,7 @@ external take: (t('a), ~count: [@ns.namedArgLoc] int) => t('a) = ;
       List.takeWhile(list{1, 2, 3}, ~f=Int.isEven) == list{}
    ]}
 */
-external takeWhile: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => t('a) = ;
+external takeWhile: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => t('a);
 /** Drop the first [count] elements from the front of a list.
 
     If the list has fewer than [count] elements, returns [].
@@ -177,7 +177,7 @@ external takeWhile: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => t('a) = ;
       List.drop(list{1, 2, 3, 4}, ~count=-1) == list{1, 2, 3, 4}
     ]}
 */
-external drop: (t('a), ~count: [@ns.namedArgLoc] int) => t('a) = ;
+external drop: (t('a), ~count: [@ns.namedArgLoc] int) => t('a);
 /** Drop elements from a list until [f] returns [false].
 
     {2 Examples}
@@ -188,7 +188,7 @@ external drop: (t('a), ~count: [@ns.namedArgLoc] int) => t('a) = ;
       List.dropWhile(list{1, 2, 3}, ~f=Int.isEven) == list{1, 2, 3}
     ]}
 */
-external dropWhile: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => t('a) = ;
+external dropWhile: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => t('a);
 /** As an {!Option} get of all of the elements of a list except the last one.
 
     Returns [None] if the list is empty.
@@ -201,7 +201,7 @@ external dropWhile: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => t('a) = ;
       List.initial(list{}) = None
     ]}
 */
-external initial: t('a) => option(t('a)) = ;
+external initial: t('a) => option(t('a));
 /** Get the last element of a list.
 
     Returns [None] if the list is empty.
@@ -216,7 +216,7 @@ external initial: t('a) => option(t('a)) = ;
       List.last(list{}) == None
     ]}
 */
-external last: t('a) => option('a) = ;
+external last: t('a) => option('a);
 /** Returns the element at position [index] in the list.
 
     Returns [None] if [index] is outside of the bounds of the list.
@@ -229,7 +229,7 @@ external last: t('a) => option('a) = ;
       List.getAt(list{1, 2, 3}, ~index=100) == None
     ]}
 */
-external getAt: (t('a), ~index: [@ns.namedArgLoc] int) => option('a) = ;
+external getAt: (t('a), ~index: [@ns.namedArgLoc] int) => option('a);
 /** Insert a new element at the specified index.
 
     The element previously occupying [index] will now be at [index + 1]
@@ -252,7 +252,7 @@ external getAt: (t('a), ~index: [@ns.namedArgLoc] int) => option('a) = ;
 */
 external insertAt:
   (t('a), ~index: [@ns.namedArgLoc] int, ~value: [@ns.namedArgLoc] 'a) =>
-  t('a) =
+  t('a)
   ;
 /** Returns a new list with the value at [index] updated to be the result of applying [f].
 
@@ -269,7 +269,7 @@ external insertAt:
 */
 external updateAt:
   (t('a), ~index: [@ns.namedArgLoc] int, ~f: [@ns.namedArgLoc] ('a => 'a)) =>
-  t('a) =
+  t('a)
   ;
 /** Creates a new list without the element at [index].
 
@@ -284,7 +284,7 @@ external updateAt:
       List.equal(String.equal, animals, List.removeAt(animals, ~index=4)) == true
    ]}
 */
-external removeAt: (t('a), ~index: [@ns.namedArgLoc] int) => t('a) = ;
+external removeAt: (t('a), ~index: [@ns.namedArgLoc] int) => t('a);
 /** Reverse the elements in a list.
 
     {2 Examples}
@@ -293,7 +293,7 @@ external removeAt: (t('a), ~index: [@ns.namedArgLoc] int) => t('a) = ;
       list{1, 2, 3}->List.reverse == list{3, 2, 1}
     ]}
  */
-external reverse: t('a) => t('a) = ;
+external reverse: t('a) => t('a);
 /** Sort using the provided [compare] function.
 
     {2 Examples}
@@ -303,7 +303,7 @@ external reverse: t('a) => t('a) = ;
     ]}
 */
 external sort:
-  (t('a), ~compare: [@ns.namedArgLoc] (('a, 'a) => int)) => t('a) =
+  (t('a), ~compare: [@ns.namedArgLoc] (('a, 'a) => int)) => t('a)
   ;
 /**
     [List.sortBy(xs, ~f=fcn)] returns a new list sorted according to the values
@@ -313,7 +313,7 @@ external sort:
       List.sortBy(list{3, 2, 5, -2, 4}, ~f=x => x * x) == list{2, -2, 3, 4, 5}
    ]}
 */
-external sortBy: (t('a), ~f: [@ns.namedArgLoc] ('a => 'b)) => t('a) = ;
+external sortBy: (t('a), ~f: [@ns.namedArgLoc] ('a => 'b)) => t('a);
 /** {1 Query} */;
 /** Determine if a list is empty.
 
@@ -325,7 +325,7 @@ external sortBy: (t('a), ~f: [@ns.namedArgLoc] ('a => 'b)) => t('a) = ;
       list{1, 2, 3}->List.isEmpty == false
     ]}
 */
-external isEmpty: t(_) => bool = ;
+external isEmpty: t(_) => bool;
 /** Return the number of elements in a list.
 
     {b Warning} [List.length] needs to access the {b entire} list in order to calculate its result.
@@ -368,7 +368,7 @@ external isEmpty: t(_) => bool = ;
       list{7, 8, 9}->List.length == 3
     ]}
 */
-external length: t('a) => int = ;
+external length: t('a) => int;
 /** Determine if [f] returns true for [any] values in a list.
 
     Stops iteration as soon as [f] returns true.
@@ -381,7 +381,7 @@ external length: t('a) => int = ;
       List.any(list{}, ~f=Int.isEven) == false
     ]}
 */
-external any: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => bool = ;
+external any: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => bool;
 /** Determine if [f] returns true for [all] values in a list.
 
     Stops iteration as soon as [f] returns false.
@@ -394,7 +394,7 @@ external any: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => bool = ;
       List.all(list{}, ~f=Int.isEven) == true
     ]}
 */
-external all: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => bool = ;
+external all: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => bool;
 /** Count the number of elements where function [f] returns [true].
 
     {2 Examples}
@@ -403,7 +403,7 @@ external all: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => bool = ;
       List.count(list{7, 5, 8, 6}, ~f=Int.isEven) == 2
     ]}
  */
-external count: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => int = ;
+external count: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => int;
 /**
    [List.uniqueBy(xs, ~f=fcn)] returns a new list containing only those elements from [xs]
    that have a unique value when [fcn] is applied to them.
@@ -421,7 +421,7 @@ external count: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => int = ;
   ]}
  */
 external uniqueBy:
-  (list('a), ~f: [@ns.namedArgLoc] ('a => string)) => list('a) =
+  (list('a), ~f: [@ns.namedArgLoc] ('a => string)) => list('a)
   ;
 /** Returns, as an [option], the first element for which [f] evaluates to true.
 
@@ -435,7 +435,7 @@ external uniqueBy:
       List.find(list{}, ~f=Int.isEven) == None
   ]}
 */
-external find: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => option('a) = ;
+external find: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => option('a);
 /** Returns, as an option, a tuple of the first element and its index for which [f] evaluates to true.
 
     If [f] doesnt return [true] for any [(index, element)] pair, returns [None].
@@ -450,7 +450,7 @@ external find: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => option('a) = ;
     ]}
 */
 external findIndex:
-  (t('a), ~f: [@ns.namedArgLoc] ((int, 'a) => bool)) => option((int, 'a)) =
+  (t('a), ~f: [@ns.namedArgLoc] ((int, 'a) => bool)) => option((int, 'a))
   ;
 /** Test if a list contains the specified element using the provided [equal] to test for equality.
 
@@ -466,7 +466,7 @@ external findIndex:
     ]}
 */
 external includes:
-  (t('a), 'a, ~equal: [@ns.namedArgLoc] (('a, 'a) => bool)) => bool =
+  (t('a), 'a, ~equal: [@ns.namedArgLoc] (('a, 'a) => bool)) => bool
   ;
 /**
     [List.minimumBy(xs, ~f=fcn)], when given a non-empty list, returns the item in the list
@@ -488,7 +488,7 @@ external includes:
      ]}
 */
 external minimumBy:
-  (~f: [@ns.namedArgLoc] ('a => 'comparable), list('a)) => option('a) =
+  (~f: [@ns.namedArgLoc] ('a => 'comparable), list('a)) => option('a)
   ;
 /**
      [List.maximumBy ~f:fcn xs], when given a non-empty list, returns the item in the list
@@ -510,7 +510,7 @@ external minimumBy:
      ]}
 */
 external maximumBy:
-  (~f: [@ns.namedArgLoc] ('a => 'comparable), list('a)) => option('a) =
+  (~f: [@ns.namedArgLoc] ('a => 'comparable), list('a)) => option('a)
   ;
 /** Find the smallest element using the provided [compare] function.
 
@@ -523,7 +523,7 @@ external maximumBy:
     ]}
 */
 external minimum:
-  (t('a), ~compare: [@ns.namedArgLoc] (('a, 'a) => int)) => option('a) =
+  (t('a), ~compare: [@ns.namedArgLoc] (('a, 'a) => int)) => option('a)
   ;
 /** Find the largest element using the provided [compare] function.
 
@@ -536,7 +536,7 @@ external minimum:
     ]}
 */
 external maximum:
-  (t('a), ~compare: [@ns.namedArgLoc] (('a, 'a) => int)) => option('a) =
+  (t('a), ~compare: [@ns.namedArgLoc] (('a, 'a) => int)) => option('a)
   ;
 /** Find a {!Tuple2} of the [(minimum, maximum)] elements using the provided [compare] function.
 
@@ -549,7 +549,7 @@ external maximum:
     ]}
 */
 external extent:
-  (t('a), ~compare: [@ns.namedArgLoc] (('a, 'a) => int)) => option(('a, 'a)) =
+  (t('a), ~compare: [@ns.namedArgLoc] (('a, 'a) => int)) => option(('a, 'a))
   ;
 /** Calculate the sum of a list using the provided modules [zero] value and [add] function.
 
@@ -571,7 +571,7 @@ external extent:
       ) == "abc"
     ]}
 */
-external sum: (t('a), (module TableclothContainer.Sum with type t = 'a)) => 'a =
+external sum: (t('a), (module TableclothContainer.Sum with type t = 'a)) => 'a
   ;
 /** {1 Transform} */;
 /** Create a new list which is the result of applying a function [f] to every element.
@@ -582,7 +582,7 @@ external sum: (t('a), (module TableclothContainer.Sum with type t = 'a)) => 'a =
       List.map(list{1.0, 4.0, 9.0}, ~f=Float.squareRoot) == list{1.0, 2.0, 3.0}
     ]}
 */
-external map: (t('a), ~f: [@ns.namedArgLoc] ('a => 'b)) => t('b) = ;
+external map: (t('a), ~f: [@ns.namedArgLoc] ('a => 'b)) => t('b);
 /** Apply a function [f] to every element and its index.
 
     {2 Examples}
@@ -594,7 +594,7 @@ external map: (t('a), ~f: [@ns.namedArgLoc] ('a => 'b)) => t('b) = ;
     ]}
 */
 external mapWithIndex:
-  (t('a), ~f: [@ns.namedArgLoc] ((int, 'a) => 'b)) => t('b) =
+  (t('a), ~f: [@ns.namedArgLoc] ((int, 'a) => 'b)) => t('b)
   ;
 /** Keep elements that [f] returns [true] for.
 
@@ -604,10 +604,10 @@ external mapWithIndex:
       List.filter(list{1, 2, 3, 4, 5, 6}, ~f=Int.isEven) == list{2, 4, 6}
     ]}
 */
-external filter: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => t('a) = ;
+external filter: (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => t('a);
 /** Like {!filter} but [f] is also called with each elements index. */
 external filterWithIndex:
-  (t('a), ~f: [@ns.namedArgLoc] ((int, 'a) => bool)) => t('a) =
+  (t('a), ~f: [@ns.namedArgLoc] ((int, 'a) => bool)) => t('a)
   ;
 /** Allows you to combine {!map} and {!filter} into a single pass.
 
@@ -630,7 +630,7 @@ external filterWithIndex:
     ]}
 */
 external filterMap:
-  (t('a), ~f: [@ns.namedArgLoc] ('a => option('b))) => t('b) =
+  (t('a), ~f: [@ns.namedArgLoc] ('a => option('b))) => t('b)
   ;
 /** Apply a function [f] onto a list and {!flatten} the resulting list of lists.
 
@@ -641,7 +641,7 @@ external filterMap:
       list{1, 2, 3}->List.flatMap(~f=n => list{n, n}) == list{1, 1, 2, 2, 3, 3}
     ]}
 */
-external flatMap: (t('a), ~f: [@ns.namedArgLoc] ('a => t('b))) => t('b) = ;
+external flatMap: (t('a), ~f: [@ns.namedArgLoc] ('a => t('b))) => t('b);
 /** Transform a list into a value.
 
     After applying [f] to every element of the list, [fold] returns the accumulator.
@@ -686,7 +686,7 @@ external fold:
     ~initial: [@ns.namedArgLoc] 'b,
     ~f: [@ns.namedArgLoc] (('b, 'a) => 'b)
   ) =>
-  'b =
+  'b
   ;
 /** This method is like {!fold} except that it iterates over the elements of the list from last to first. */
 external foldRight:
@@ -695,7 +695,7 @@ external foldRight:
     ~initial: [@ns.namedArgLoc] 'b,
     ~f: [@ns.namedArgLoc] (('b, 'a) => 'b)
   ) =>
-  'b =
+  'b
   ;
 /** {1 Combine} */;
 /** Creates a new list which is the result of appending the second list onto the end of the first.
@@ -708,7 +708,7 @@ external foldRight:
       List.append(fourtyTwos, eightyOnes) == list{42, 42, 81, 81, 81}
     ]}
 */
-external append: (t('a), t('a)) => t('a) = ;
+external append: (t('a), t('a)) => t('a);
 /** Concatenate a list of lists into a single list.
 
     {2 Examples}
@@ -717,7 +717,7 @@ external append: (t('a), t('a)) => t('a) = ;
       List.flatten(list{list{1, 2}, list{3}, list{4, 5}}) == list{1, 2, 3, 4, 5}
     ]}
 */
-external flatten: t(t('a)) => t('a) = ;
+external flatten: t(t('a)) => t('a);
 /** Combine two lists by merging each pair of elements into a {!Tuple2}.
 
     If one list is longer, the extra elements are dropped.
@@ -731,7 +731,7 @@ external flatten: t(t('a)) => t('a) = ;
       == list{(1, "Dog"), (2, "Eagle"), (3, "Ferret")}
     ]}
 */
-external zip: (t('a), t('b)) => t(('a, 'b)) = ;
+external zip: (t('a), t('b)) => t(('a, 'b));
 /** Combine two lists, using [f] to combine each pair of elements.
 
     If one list is longer, the extra elements are dropped.
@@ -748,7 +748,7 @@ external zip: (t('a), t('b)) => t(('a, 'b)) = ;
     ]}
 */
 external map2:
-  (t('a), t('b), ~f: [@ns.namedArgLoc] (('a, 'b) => 'c)) => t('c) =
+  (t('a), t('b), ~f: [@ns.namedArgLoc] (('a, 'b) => 'c)) => t('c)
   ;
 /** Combine three lists, using [f] to combine each trio of elements.
 
@@ -767,7 +767,7 @@ external map2:
 */
 external map3:
   (t('a), t('b), t('c), ~f: [@ns.namedArgLoc] (('a, 'b, 'c) => 'd)) =>
-  t('d) =
+  t('d)
   ;
 /** {1 Deconstruct} */;
 /** Split a list into a {!Tuple2} of lists. Values which [f] returns true for will end up in {!Tuple2.first}.
@@ -779,7 +779,7 @@ external map3:
     ]}
 */
 external partition:
-  (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => (t('a), t('a)) =
+  (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => (t('a), t('a))
   ;
 /** Divides a list into a {!Tuple2} of lists.
 
@@ -799,7 +799,7 @@ external partition:
       List.splitAt(list{1, 2, 3, 4, 5}, ~index=10) == (list{1, 2, 3, 4, 5}, 10)
     ]}
 */
-external splitAt: (t('a), ~index: [@ns.namedArgLoc] int) => (t('a), t('a)) =
+external splitAt: (t('a), ~index: [@ns.namedArgLoc] int) => (t('a), t('a))
   ;
 /** Divides a list into a {!Tuple2} at the first element where function [f] will return [true].
 
@@ -815,7 +815,7 @@ external splitAt: (t('a), ~index: [@ns.namedArgLoc] int) => (t('a), t('a)) =
     ]}
 */
 external splitWhen:
-  (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => (t('a), t('a)) =
+  (t('a), ~f: [@ns.namedArgLoc] ('a => bool)) => (t('a), t('a))
   ;
 /** Decompose a list of {!Tuple2} into a {!Tuple2} of lists.
 
@@ -826,7 +826,7 @@ external splitWhen:
       == (list{0, 17, 1337}, list{true, false, true})
     ]}
 */
-external unzip: t(('a, 'b)) => (t('a), t('b)) = ;
+external unzip: t(('a, 'b)) => (t('a), t('b));
 /** {1 Iterate} */;
 /** Iterates over the elements of invokes [f] for each element.
 
@@ -846,7 +846,7 @@ external unzip: t(('a, 'b)) => (t('a), t('b)) = ;
       *)
     ]}
 */
-external forEach: (t('a), ~f: [@ns.namedArgLoc] ('a => unit)) => unit = ;
+external forEach: (t('a), ~f: [@ns.namedArgLoc] ('a => unit)) => unit;
 /** Like {!forEach} but [f] is also called with the elements index.
 
     {2 Examples}
@@ -862,7 +862,7 @@ external forEach: (t('a), ~f: [@ns.namedArgLoc] ('a => unit)) => unit = ;
     ]}
 */
 external forEachWithIndex:
-  (t('a), ~f: [@ns.namedArgLoc] ((int, 'a) => unit)) => unit =
+  (t('a), ~f: [@ns.namedArgLoc] ((int, 'a) => unit)) => unit
   ;
 /** Places [sep] between all the elements of the given list.
 
@@ -875,7 +875,7 @@ external forEachWithIndex:
       List.intersperse(list{}, ~sep=0) == list{}
     ]}
 */
-external intersperse: (t('a), ~sep: [@ns.namedArgLoc] 'a) => t('a) = ;
+external intersperse: (t('a), ~sep: [@ns.namedArgLoc] 'a) => t('a);
 /** Split a list into equally sized chunks.
 
     If there aren't enough elements to make the last 'chunk', those elements are ignored.
@@ -887,7 +887,7 @@ external intersperse: (t('a), ~sep: [@ns.namedArgLoc] 'a) => t('a) = ;
       == list{list{"#FFBA49", "#9984D4"}, list{"#20A39E", "#EF5B5B"}}
     ]}
  */
-external chunksOf: (t('a), ~size: [@ns.namedArgLoc] int) => t(t('a)) = ;
+external chunksOf: (t('a), ~size: [@ns.namedArgLoc] int) => t(t('a));
 /** Provides a sliding 'window' of sub-lists over a list.
 
     The first sub-list starts at the head of the list and takes the first [size] elements.
@@ -910,7 +910,7 @@ external chunksOf: (t('a), ~size: [@ns.namedArgLoc] int) => t(t('a)) = ;
 */
 external sliding:
   (~step: [@ns.namedArgLoc] int=?, t('a), ~size: [@ns.namedArgLoc] int) =>
-  t(t('a)) =
+  t(t('a))
   ;
 /** Divide a list into groups.
 
@@ -931,7 +931,7 @@ external sliding:
    ]}
 */
 external groupWhile:
-  (t('a), ~f: [@ns.namedArgLoc] (('a, 'a) => bool)) => t(t('a)) =
+  (t('a), ~f: [@ns.namedArgLoc] (('a, 'a) => bool)) => t(t('a))
   ;
 /** {1 Convert} */;
 /** Converts a list of strings into a {!String}, placing [sep] between each string in the result.
@@ -942,7 +942,7 @@ external groupWhile:
       List.join(list{"Ant", "Bat", "Cat"}, ~sep=", ") == "Ant, Bat, Cat"
     ]}
  */
-external join: (t(string), ~sep: [@ns.namedArgLoc] string) => string = ;
+external join: (t(string), ~sep: [@ns.namedArgLoc] string) => string;
 /** Collect elements which [f] produces the same key for.
 
     Produces a map from ['key] to a {!List} of all elements which produce the same ['key].
@@ -961,13 +961,13 @@ external groupBy:
     TableclothComparator.s('key, 'id),
     ~f: [@ns.namedArgLoc] ('value => 'key)
   ) =>
-  TableclothMap.t('key, list('value), 'id) =
+  TableclothMap.t('key, list('value), 'id)
   ;
 /** Converts a list to an {!Array}. */
-external toArray: t('a) => array('a) = ;
+external toArray: t('a) => array('a);
 /** {1 Compare} */;
 /** Test two lists for equality using the provided function to test elements. */
-external equal: (t('a), t('a), ('a, 'a) => bool) => bool = ;
+external equal: (t('a), t('a), ('a, 'a) => bool) => bool;
 /** Compare two lists using the provided [f] function to compare elements.
 
     A shorter list is 'less' than a longer one.
@@ -980,4 +980,4 @@ external equal: (t('a), t('a), ('a, 'a) => bool) => bool = ;
       List.compare(list{1, 2, 5}, list{1, 2, 3}, Int.compare) == 1
     ]}
 */
-external compare: (t('a), t('a), ('a, 'a) => int) => int = ;
+external compare: (t('a), t('a), ('a, 'a) => int) => int;

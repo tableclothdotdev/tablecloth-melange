@@ -4,7 +4,7 @@
     It is a variant containing the [Some('a)] and [None] constructors
 
     {[
-      type t<'a> =
+      type t<'a>
         | Some('a)
         | None
     ]}
@@ -47,7 +47,7 @@ type nonrec t('a) = option('a);
       String.reverse("desserts")->Some == Some("stressed")
     ]}
  */
-external some: 'a => option('a) = ;
+external some: 'a => option('a);
 /** Returns [None] if the first argument is [None], otherwise return the second argument.
 
   Unlike the built in [&&] operator, the [and_] function does not short-circuit.
@@ -63,7 +63,7 @@ external some: 'a => option('a) = ;
       Option.and_(None, None) == None
     ]}
 */
-external and_: (t('a), t('a)) => t('a) = ;
+external and_: (t('a), t('a)) => t('a);
 /** Return the first argument if it {!isSome}, otherwise return the second.
 
     Unlike the built in [||] operator, the [or_] function does not short-circuit.
@@ -78,7 +78,7 @@ external and_: (t('a), t('a)) => t('a) = ;
       Option.or_(None, None) == None
     ]}
 */
-external or_: (t('a), t('a)) => t('a) = ;
+external or_: (t('a), t('a)) => t('a);
 /** Return the second argument if it {!isSome}, otherwise return the first.
 
     Like {!or_} but in reverse. Useful when using the [|>] operator
@@ -92,7 +92,7 @@ external or_: (t('a), t('a)) => t('a) = ;
       Option.orElse(None, None) == None
     ]}
 */
-external orElse: (t('a), t('a)) => t('a) = ;
+external orElse: (t('a), t('a)) => t('a);
 /** Transform two options into an option of a {!Tuple2}.
 
     Returns None if either of the aguments is None.
@@ -106,7 +106,7 @@ external orElse: (t('a), t('a)) => t('a) = ;
       Option.both(None, None) == None
     ]}
 */
-external both: (t('a), t('b)) => t(('a, 'b)) = ;
+external both: (t('a), t('b)) => t(('a, 'b));
 /** Flatten two optional layers into a single optional layer.
 
     {2 Examples}
@@ -117,7 +117,7 @@ external both: (t('a), t('b)) => t(('a, 'b)) = ;
       Option.flatten(None) == None
     ]}
 */
-external flatten: t(t('a)) => t('a) = ;
+external flatten: t(t('a)) => t('a);
 /** Transform the value inside an option.
 
     Leaves [None] untouched.
@@ -130,7 +130,7 @@ external flatten: t(t('a)) => t('a) = ;
       Option.map(~f=x => x * x, None) == None
     ]}
 */
-external map: (t('a), ~f: [@ns.namedArgLoc] ('a => 'b)) => t('b) = ;
+external map: (t('a), ~f: [@ns.namedArgLoc] ('a => 'b)) => t('b);
 /** Combine two {!Option}s.
 
     If both options are [Some] returns, as [Some] the result of running [f] on both values.
@@ -147,7 +147,7 @@ external map: (t('a), ~f: [@ns.namedArgLoc] ('a => 'b)) => t('b) = ;
     ]}
 */
 external map2:
-  (t('a), t('b), ~f: [@ns.namedArgLoc] (('a, 'b) => 'c)) => t('c) =
+  (t('a), t('b), ~f: [@ns.namedArgLoc] (('a, 'b) => 'c)) => t('c)
   ;
 /** Chain together many computations that may not return a value.
 
@@ -190,7 +190,7 @@ external map2:
       Option.andThen(Some([]), ~f=Array.first) == None
     ]}
 */
-external andThen: (t('a), ~f: [@ns.namedArgLoc] ('a => t('b))) => t('b) = ;
+external andThen: (t('a), ~f: [@ns.namedArgLoc] ('a => t('b))) => t('b);
 /** Unwrap an [option<'a>] returning [default] if called with [None].
 
     This comes in handy when paired with functions like {!Map.get},
@@ -206,7 +206,7 @@ external andThen: (t('a), ~f: [@ns.namedArgLoc] ('a => t('b))) => t('b) = ;
       Option.unwrap(Map.get(Map.String.empty, "Tom"), ~default="unknown") == "unknown"
     ]}
 */
-external unwrap: (t('a), ~default: [@ns.namedArgLoc] 'a) => 'a = ;
+external unwrap: (t('a), ~default: [@ns.namedArgLoc] 'a) => 'a;
 /** Unwrap an [option('a)] returning the enclosed ['a].
 
     {b Note} in most situations it is better to use pattern matching, {!unwrap}, {!map} or {!andThen}.
@@ -223,7 +223,7 @@ external unwrap: (t('a), ~default: [@ns.namedArgLoc] 'a) => 'a = ;
       Array.first([])->Option.unwrapUnsafe // will raise Invalid_argument
     ]}
 */
-external unwrapUnsafe: t('a) => 'a = ;
+external unwrapUnsafe: t('a) => 'a;
 /** Check if an {!Option} is a [Some].
 
     In most situtations you should just use pattern matching instead.
@@ -235,7 +235,7 @@ external unwrapUnsafe: t('a) => 'a = ;
       Option.isSome(None) == false
     ]}
 */
-external isSome: t('a) => bool = ;
+external isSome: t('a) => bool;
 /** Check if an {!Option} is a [None].
 
     In most situtations you should just use pattern matching instead.
@@ -247,7 +247,7 @@ external isSome: t('a) => bool = ;
       Option.isNone(None) == true
     ]}
 */
-external isNone: t('a) => bool = ;
+external isNone: t('a) => bool;
 /** Run a function against an [Some(value)], ignores [None]s.
 
     {2 Examples}
@@ -257,7 +257,7 @@ external isNone: t('a) => bool = ;
       (* logs "Dog" *)
     ]}
 */
-external tap: (t('a), ~f: [@ns.namedArgLoc] ('a => unit)) => unit = ;
+external tap: (t('a), ~f: [@ns.namedArgLoc] ('a => unit)) => unit;
 /** Convert an option to an {!Array}.
 
     [None] is represented as an empty array and [Some] is represented as an array of one element.
@@ -269,7 +269,7 @@ external tap: (t('a), ~f: [@ns.namedArgLoc] ('a => unit)) => unit = ;
       Option.toArray(None) == [
     ]}
 */
-external toArray: t('a) => array('a) = ;
+external toArray: t('a) => array('a);
 /** Convert an option to a {!List}.
 
     [None] is represented as an empty list and [Some] is represented as a list of one element.
@@ -281,7 +281,7 @@ external toArray: t('a) => array('a) = ;
       Option.toList(None) == list{}
     ]}
 */
-external toList: t('a) => list('a) = ;
+external toList: t('a) => list('a);
 /** {1 Compare} */;
 /** Test two optional values for equality using the provided function.
 
@@ -294,7 +294,7 @@ external toList: t('a) => list('a) = ;
       Option.equal(None, None, Int.equal) == true
     ]}
 */
-external equal: (t('a), t('a), ('a, 'a) => bool) => bool = ;
+external equal: (t('a), t('a), ('a, 'a) => bool) => bool;
 /** Compare two optional values using the provided [f] function.
 
     A [None] is "less" than a [Some].
@@ -308,5 +308,5 @@ external equal: (t('a), t('a), ('a, 'a) => bool) => bool = ;
     ]}
 */
 external compare:
-  (t('a), t('a), ~f: [@ns.namedArgLoc] (('a, 'a) => int)) => int =
+  (t('a), t('a), ~f: [@ns.namedArgLoc] (('a, 'a) => int)) => int
   ;

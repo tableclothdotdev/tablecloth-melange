@@ -32,7 +32,7 @@ type nonrec t = bool;
       Bool.fromInt(-3) == None
     ]}
 */
-external fromInt: int => option(bool) = ;
+external fromInt: int => option(bool);
 /** Convert a {!String} into a {!Bool}.
 
     {2 Examples}
@@ -47,7 +47,7 @@ external fromInt: int => option(bool) = ;
       Bool.fromString("Not even close") == None
     ]}
 */
-external fromString: string => option(bool) = ;
+external fromString: string => option(bool);
 /** {1 Basic operations} */;
 /** The exclusive or operator.
 
@@ -62,7 +62,7 @@ external fromString: string => option(bool) = ;
       Bool.xor(false, false) == false
     ]}
 */
-external xor: (bool, bool) => bool = ;
+external xor: (bool, bool) => bool;
 /** Negate a [bool].
 
     {2 Examples}
@@ -72,7 +72,7 @@ external xor: (bool, bool) => bool = ;
       Bool.not(true) == false
     ]}
 */
-external (!): t => bool = ;
+external (!): t => bool;
 /** The logical conjunction [AND] operator.
 
     Returns [true] if {b both} of its operands are [true].
@@ -87,7 +87,7 @@ external (!): t => bool = ;
       Bool.and_(false, false) == false
     ]}
 */
-external and_: (bool, bool) => bool = ;
+external and_: (bool, bool) => bool;
 /** {1 Convert} */;
 /** Convert a [bool] to a {!String}
 
@@ -98,7 +98,7 @@ external and_: (bool, bool) => bool = ;
       Bool.toString(false) == "false"
     ]}
 */
-external toString: bool => string = ;
+external toString: bool => string;
 /** Convert a [bool] to an {!Int}.
 
     {2 Examples}
@@ -108,7 +108,7 @@ external toString: bool => string = ;
       Bool.toInt(false) == 0
     ]}
 */
-external toInt: bool => int = ;
+external toInt: bool => int;
 /** {1 Compare} */;
 /** Test for the equality of two [bool] values.
 
@@ -120,7 +120,7 @@ external toInt: bool => int = ;
       Bool.equal(false, true) == false
     ]}
 */
-external equal: (bool, bool) => bool = ;
+external equal: (bool, bool) => bool;
 /** Compare two [bool] values.
 
     {2 Examples}
@@ -132,4 +132,4 @@ external equal: (bool, bool) => bool = ;
       Bool.compare(false, false) == 0
     ]}
 */
-external compare: (bool, bool) => int = ;
+external compare: (bool, bool) => int;

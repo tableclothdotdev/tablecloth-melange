@@ -5,7 +5,7 @@
     [Ok('ok)], and one for unsuccessful results ([Error('error)]).
 
     {[
-      type t<'ok, 'error> =
+      type t<'ok, 'error>
         | Ok('ok)
         | Error('error)
     ]}
@@ -37,7 +37,7 @@ type nonrec t('ok, 'error) = result('ok, 'error);
       Array.map([1, 2, 3], ~f=Result.ok) == [Ok(1), Ok(2), Ok(3)]
     ]}
 */
-external ok: 'ok => t('ok, 'error) = ;
+external ok: 'ok => t('ok, 'error);
 /** A function alternative to the [Error] constructor which can be used in places where
     the constructor isn't permitted such as at the of a {!Fun.pipe} or functions like {!List.map}.
 
@@ -58,7 +58,7 @@ external ok: 'ok => t('ok, 'error) = ;
       Array.map([1, 2, 3], ~f=Result.error) == [Error(1), Error(2), Error(3)]
     ]}
 */
-external error: 'error => t('ok, 'error) = ;
+external error: 'error => t('ok, 'error);
 /** Run the provided function and wrap the returned value in a {!Result}, catching any exceptions raised.
 
     {2 Examples}
@@ -72,7 +72,7 @@ external error: 'error => t('ok, 'error) = ;
       Result.attempt(() => numbers[3]) // returns Error(Assert_failure)
     ]}
 */
-external attempt: (unit => 'ok) => t('ok, exn) = ;
+external attempt: (unit => 'ok) => t('ok, exn);
 /** Convert an {!Option} to a {!Result} where a [Some(value)] becomes [Ok(value)] and a [None] becomes [Error(error)].
 
     {2 Examples}
@@ -84,7 +84,7 @@ external attempt: (unit => 'ok) => t('ok, exn) = ;
     ]}
 */
 external fromOption:
-  (option('ok), ~error: [@ns.namedArgLoc] 'error) => t('ok, 'error) =
+  (option('ok), ~error: [@ns.namedArgLoc] 'error) => t('ok, 'error)
   ;
 /** Check if a {!Result} is an [Ok].
 
@@ -103,7 +103,7 @@ external fromOption:
       Result.isOk(Error(3)) == false
     ]}
 */
-external isOk: t(_, _) => bool = ;
+external isOk: t(_, _) => bool;
 /** Check if a {!Result} is an [Error].
 
     Useful when you want to perform some side effect based on the presence of
@@ -121,7 +121,7 @@ external isOk: t(_, _) => bool = ;
       Result.isError(Error(3)) == true
     ]}
 */
-external isError: t(_, _) => bool = ;
+external isError: t(_, _) => bool;
 /** Returns the first argument if it {!isError}, otherwise return the second argument.
 
     Unlike the {!Bool.and_} operator, the [and_] function does not short-circuit.
@@ -142,7 +142,7 @@ external isError: t(_, _) => bool = ;
       == Error(#UnexpectedInvertebrate("Honey Bee"))
     ]}
 */
-external and_: (t('ok, 'error), t('ok, 'error)) => t('ok, 'error) = ;
+external and_: (t('ok, 'error), t('ok, 'error)) => t('ok, 'error);
 /** Return the first argument if it {!isOk}, otherwise return the second.
 
   Unlike the built in [||] operator, the [or_] function does not short-circuit.
@@ -159,7 +159,7 @@ external and_: (t('ok, 'error), t('ok, 'error)) => t('ok, 'error) = ;
     == Error(#UnexpectedBird("Robin"))
    ]}
 */
-external or_: (t('ok, 'error), t('ok, 'error)) => t('ok, 'error) = ;
+external or_: (t('ok, 'error), t('ok, 'error)) => t('ok, 'error);
 /** Return the second argument if it {!isOk}, otherwise return the first.
 
   Like {!or_} but in reverse. Useful when using the [|>] operator
@@ -174,8 +174,8 @@ external or_: (t('ok, 'error), t('ok, 'error)) => t('ok, 'error) = ;
 
   {[Result.orElse (Error (`UnexpectedInvertabrate "Periwinkle")) (Error (`UnexpectedBird "Robin")) = (Error (`UnexpectedInvertabrate "Periwinkle"))]}
 */
-external orElse: (t('ok, 'error), t('ok, 'error)) => t('ok, 'error) = ;
-external or_else: (t('ok, 'error), t('ok, 'error)) => t('ok, 'error) = ;
+external orElse: (t('ok, 'error), t('ok, 'error)) => t('ok, 'error);
+external or_else: (t('ok, 'error), t('ok, 'error)) => t('ok, 'error);
 /** Combine two results, if both are [Ok] returns an [Ok] containing a {!Tuple2} of the values.
 
     If either is an [Error], returns the first [Error].
@@ -199,7 +199,7 @@ external or_else: (t('ok, 'error), t('ok, 'error)) => t('ok, 'error) = ;
       ) == Error(#UnexpectedBird("Flamingo"))
     ]}
 */
-external both: (t('a, 'error), t('b, 'error)) => t(('a, 'b), 'error) = ;
+external both: (t('a, 'error), t('b, 'error)) => t(('a, 'b), 'error);
 /** Collapse a nested result, removing one layer of nesting.
 
     {2 Examples}
@@ -214,7 +214,7 @@ external both: (t('a, 'error), t('b, 'error)) => t(('a, 'b), 'error) = ;
       == Error(#UnexpectedInvertebrate("Woodlouse"))
     ]}
 */
-external flatten: t(t('ok, 'error), 'error) => t('ok, 'error) = ;
+external flatten: t(t('ok, 'error), 'error) => t('ok, 'error);
 /** Unwrap a Result using the [~default] value in case of an [Error].
 
     {2 Examples}
@@ -224,7 +224,7 @@ external flatten: t(t('ok, 'error), 'error) => t('ok, 'error) = ;
       Result.unwrap(Error(#UnexpectedBird("Ostrich")), ~default=0) == 0
     ]}
 */
-external unwrap: (t('ok, 'error), ~default: [@ns.namedArgLoc] 'ok) => 'ok = ;
+external unwrap: (t('ok, 'error), ~default: [@ns.namedArgLoc] 'ok) => 'ok;
 /** Unwrap a Result using the [Lazy.force default] value in case of an [Error]
 
     {2 Examples}
@@ -234,7 +234,7 @@ external unwrap: (t('ok, 'error), ~default: [@ns.namedArgLoc] 'ok) => 'ok = ;
     {[Result.unwrapLazy ~default:(lazy 0) ((Error (`UnexpectedBird "Ostrich"))) = 0]}
 */
 external unwrapLazy:
-  (t('ok, 'error), ~default: [@ns.namedArgLoc] Lazy.t('ok)) => 'ok =
+  (t('ok, 'error), ~default: [@ns.namedArgLoc] Lazy.t('ok)) => 'ok
   ;
 /** Unwrap a Result, raising an exception in case of an [Error].
 
@@ -249,7 +249,7 @@ external unwrapLazy:
       Result.unwrapUnsafe(Error("bad")) // raises Not_found
     ]}
 */
-external unwrapUnsafe: t('ok, _) => 'ok = ;
+external unwrapUnsafe: t('ok, _) => 'ok;
 /** Like {!Result.unwrap} but unwraps an [Error] value instead.
 
     {2 Examples}
@@ -265,7 +265,7 @@ external unwrapUnsafe: t('ok, _) => 'ok = ;
     ]}
 */
 external unwrapError:
-  (t('ok, 'error), ~default: [@ns.namedArgLoc] 'error) => 'error =
+  (t('ok, 'error), ~default: [@ns.namedArgLoc] 'error) => 'error
   ;
 /** Combine two Results.
 
@@ -284,7 +284,7 @@ external unwrapError:
 */
 external map2:
   (t('a, 'error), t('b, 'error), ~f: [@ns.namedArgLoc] (('a, 'b) => 'c)) =>
-  t('c, 'error) =
+  t('c, 'error)
   ;
 /** If all of the elements of a list are [Ok], returns an [Ok] of the the list of unwrapped values.
 
@@ -297,7 +297,7 @@ external map2:
       Result.values(list{Ok(1), Error("two"), Ok(3), Error("four")}) == Error("two")
     ]}
 */
-external values: list(t('ok, 'error)) => t(list('ok), 'error) = ;
+external values: list(t('ok, 'error)) => t(list('ok), 'error);
 /**
     [Result.combine(results)] takes a list of [Result] values. If all
     the elements in [results] are of the form [Ok x], then [Result.combine]
@@ -314,7 +314,7 @@ external values: list(t('ok, 'error)) => t(list('ok), 'error) = ;
       Result.combine(list{Ok(1), Error("two"), Ok(3), Error("four")}) == Error("two")
     ]}
   */
-external combine: list(result('ok, 'error)) => result(list('ok), 'error) =
+external combine: list(result('ok, 'error)) => result(list('ok), 'error)
   ;
 /** Transforms the ['ok] in a result using [f]. Leaves the ['error] untouched.
 
@@ -326,7 +326,7 @@ external combine: list(result('ok, 'error)) => result(list('ok), 'error) =
     ]}
 */
 external map:
-  (t('a, 'error), ~f: [@ns.namedArgLoc] ('a => 'b)) => t('b, 'error) =
+  (t('a, 'error), ~f: [@ns.namedArgLoc] ('a => 'b)) => t('b, 'error)
   ;
 /** Transforms the value in an [Error] using [f]. Leaves an [Ok] untouched.
 
@@ -338,7 +338,7 @@ external map:
     ]}
 */
 external mapError:
-  (t('ok, 'a), ~f: [@ns.namedArgLoc] ('a => 'b)) => t('ok, 'b) =
+  (t('ok, 'a), ~f: [@ns.namedArgLoc] ('a => 'b)) => t('ok, 'b)
   ;
 /** Run a function which may fail on a result.
 
@@ -371,7 +371,7 @@ external mapError:
 */
 external andThen:
   (t('a, 'error), ~f: [@ns.namedArgLoc] ('a => t('b, 'error))) =>
-  t('b, 'error) =
+  t('b, 'error)
   ;
 /** Run a function against an [Ok(value)], ignores [Error]s.
 
@@ -382,7 +382,7 @@ external andThen:
       (* logs "Dog" *)
     ]}
  */
-external tap: (t('ok, _), ~f: [@ns.namedArgLoc] ('ok => unit)) => unit = ;
+external tap: (t('ok, _), ~f: [@ns.namedArgLoc] ('ok => unit)) => unit;
 /** {1 Convert} */;
 /** Convert a {!Result} to an {!Option}.
 
@@ -397,7 +397,7 @@ external tap: (t('ok, _), ~f: [@ns.namedArgLoc] ('ok => unit)) => unit = ;
       Result.toOption(Error("Missing number!")) == None
     ]}
 */
-external toOption: t('ok, _) => option('ok) = ;
+external toOption: t('ok, _) => option('ok);
 /** {1 Compare} */;
 /** Test two results for equality using the provided functions.
 
@@ -418,7 +418,7 @@ external equal:
     ('ok, 'ok) => bool,
     ('error, 'error) => bool
   ) =>
-  bool =
+  bool
   ;
 /** Compare results for using the provided functions.
     [f] will be used to compare [Ok]'s and [g] will be used on [Error]s.
@@ -449,5 +449,5 @@ external compare:
     ~f: [@ns.namedArgLoc] (('ok, 'ok) => int),
     ~g: [@ns.namedArgLoc] (('error, 'error) => int)
   ) =>
-  int =
+  int
   ;

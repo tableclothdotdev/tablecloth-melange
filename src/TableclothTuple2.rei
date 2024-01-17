@@ -12,7 +12,7 @@ type nonrec t('a, 'b) = ('a, 'b);
       Tuple2.make(3, "Clementine") == (3, "Clementine")
     ]}
 */
-external make: ('a, 'b) => ('a, 'b) = ;
+external make: ('a, 'b) => ('a, 'b);
 /** Create a tuple from the first two elements of an {!Array}.
 
     If the array is longer than two elements, the extra elements are ignored.
@@ -27,7 +27,7 @@ external make: ('a, 'b) => ('a, 'b) = ;
       Tuple2.fromArray([4, 5, 6]) == Some(4, 5)
     ]}
 */
-external fromArray: array('a) => option(('a, 'a)) = ;
+external fromArray: array('a) => option(('a, 'a));
 /** Create a tuple from the first two elements of a {!List}.
 
     If the list is longer than two elements, the extra elements are ignored.
@@ -42,7 +42,7 @@ external fromArray: array('a) => option(('a, 'a)) = ;
       Tuple2.fromList(list{4, 5, 6}) == Some(4, 5)
     ]}
 */
-external fromList: list('a) => option(('a, 'a)) = ;
+external fromList: list('a) => option(('a, 'a));
 /** Extract the first value from a tuple.
 
     {2 Examples}
@@ -52,7 +52,7 @@ external fromList: list('a) => option(('a, 'a)) = ;
       Tuple2.first(("john", "doe")) == "john"
     ]}
 */
-external first: (('a, 'b)) => 'a = ;
+external first: (('a, 'b)) => 'a;
 /** Extract the second value from a tuple.
 
     {2 Examples}
@@ -62,7 +62,7 @@ external first: (('a, 'b)) => 'a = ;
       Tuple2.second(("john", "doe")) == "doe"
     ]}
 */
-external second: (('a, 'b)) => 'b = ;
+external second: (('a, 'b)) => 'b;
 /** {1 Transform} */;
 /** Transform the {!first} value in a tuple.
 
@@ -73,7 +73,7 @@ external second: (('a, 'b)) => 'b = ;
       Tuple2.mapFirst(("stressed", 16), ~f=String.length) == (8, 16)
     ]}
 */
-external mapFirst: (('a, 'b), ~f: [@ns.namedArgLoc] ('a => 'x)) => ('x, 'b) =
+external mapFirst: (('a, 'b), ~f: [@ns.namedArgLoc] ('a => 'x)) => ('x, 'b)
   ;
 /** Transform the second value in a tuple.
 
@@ -84,7 +84,7 @@ external mapFirst: (('a, 'b), ~f: [@ns.namedArgLoc] ('a => 'x)) => ('x, 'b) =
       Tuple2.mapSecond(~f=Int.negate, ("stressed", 16)) == ("stressed", -16)
     ]}
 */
-external mapSecond: (('a, 'b), ~f: [@ns.namedArgLoc] ('b => 'c)) => ('a, 'c) =
+external mapSecond: (('a, 'b), ~f: [@ns.namedArgLoc] ('b => 'c)) => ('a, 'c)
   ;
 /** Transform both values of a tuple, using [f] for the first value and [g] for the second.
 
@@ -101,7 +101,7 @@ external mapEach:
     ~f: [@ns.namedArgLoc] ('a => 'x),
     ~g: [@ns.namedArgLoc] ('b => 'y)
   ) =>
-  ('x, 'y) =
+  ('x, 'y)
   ;
 /** Transform both of the values of a tuple using the same function.
 
@@ -114,7 +114,7 @@ external mapEach:
       Tuple2.mapAll(("was", "stressed"), ~f=String.length) == (3, 8)
     ]}
 */
-external mapAll: (('a, 'a), ~f: [@ns.namedArgLoc] ('a => 'b)) => ('b, 'b) = ;
+external mapAll: (('a, 'a), ~f: [@ns.namedArgLoc] ('a => 'b)) => ('b, 'b);
 /** Switches the first and second values of a tuple.
 
     {2 Examples}
@@ -124,7 +124,7 @@ external mapAll: (('a, 'a), ~f: [@ns.namedArgLoc] ('a => 'b)) => ('b, 'b) = ;
       Tuple2.swap(("stressed", 16)) == (16, "stressed")
     ]}
 */
-external swap: (('a, 'b)) => ('b, 'a) = ;
+external swap: (('a, 'b)) => ('b, 'a);
 /** {1 Convert} */;
 /** Turns a tuple into an {!Array} of length two.
 
@@ -137,7 +137,7 @@ external swap: (('a, 'b)) => ('b, 'a) = ;
       Tuple2.toArray(("was", "stressed")) == ["was", "stressed"]
     ]}
 */
-external toArray: (('a, 'a)) => array('a) = ;
+external toArray: (('a, 'a)) => array('a);
 /** Turns a tuple into a list of length two. This function can only be used on tuples which have the same type for each value.
 
     {2 Examples}
@@ -147,7 +147,7 @@ external toArray: (('a, 'a)) => array('a) = ;
       Tuple2.toList(("was", "stressed")) == list{"was", "stressed"}
     ]}
 */
-external toList: (('a, 'a)) => list('a) = ;
+external toList: (('a, 'a)) => list('a);
 /** Test two {!Tuple2}s for equality, using the provided functions to test the
     first and second components.
 
@@ -159,7 +159,7 @@ external toList: (('a, 'a)) => list('a) = ;
     ]}
 */
 external equal:
-  (t('a, 'b), t('a, 'b), ('a, 'a) => bool, ('b, 'b) => bool) => bool =
+  (t('a, 'b), t('a, 'b), ('a, 'a) => bool, ('b, 'b) => bool) => bool
   ;
 /** Compare two {!Tuple2}s, using the provided [f] function to compare the first components.
     Then, if the first components are equal, the second components are compared with [g].
@@ -179,5 +179,5 @@ external compare:
     ~f: [@ns.namedArgLoc] (('a, 'a) => int),
     ~g: [@ns.namedArgLoc] (('b, 'b) => int)
   ) =>
-  int =
+  int
   ;

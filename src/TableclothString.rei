@@ -8,7 +8,7 @@ type nonrec t = string;
 
 */;
 /** Converts the given character to an equivalent string of length one. */
-external fromChar: char => string = ;
+external fromChar: char => string;
 /** Create a string from an {!Array} of characters.
 
     Note that these must be individual characters in single quotes, not strings of length one.
@@ -20,7 +20,7 @@ external fromChar: char => string = ;
       String.fromArray(['a', 'b', 'c']) == "abc"
     ]}
 */
-external fromArray: array(char) => string = ;
+external fromArray: array(char) => string;
 /** Create a string from a {!List} of characters.
 
     Note that these must be individual characters in single quotes, not strings of length one.
@@ -32,7 +32,7 @@ external fromArray: array(char) => string = ;
       String.fromList(list{'a', 'b', 'c'}) == "abc"
     ]}
 */
-external fromList: list(char) => string = ;
+external fromList: list(char) => string;
 /** Create a string by repeating a string [count] time.
 
     {3 Exceptions}
@@ -47,7 +47,7 @@ external fromList: list(char) => string = ;
       String.repeat("ok", ~count=0) == ""
     ]}
 */
-external repeat: (string, ~count: [@ns.namedArgLoc] int) => string = ;
+external repeat: (string, ~count: [@ns.namedArgLoc] int) => string;
 /** Create a string by providing a length and a function to choose characters.
 
     Returns an empty string if the length is negative.
@@ -58,7 +58,7 @@ external repeat: (string, ~count: [@ns.namedArgLoc] int) => string = ;
       String.initialize(8, ~f=Fun.constant('9')) == "99999999"
     ]}
 */
-external initialize: (int, ~f: [@ns.namedArgLoc] (int => char)) => string = ;
+external initialize: (int, ~f: [@ns.namedArgLoc] (int => char)) => string;
 /** {1 Basic operations} */;
 /** Get the character at the specified index
 
@@ -74,9 +74,9 @@ external initialize: (int, ~f: [@ns.namedArgLoc] (int => char)) => string = ;
     ]}
 
 */
-external get: (string, int) => char = ;
+external get: (string, int) => char;
 /** Get the character at [~index] */
-external getAt: (string, ~index: [@ns.namedArgLoc] int) => option(char) = ;
+external getAt: (string, ~index: [@ns.namedArgLoc] int) => option(char);
 /** Reverse a string
 
     {2 Examples}
@@ -85,17 +85,17 @@ external getAt: (string, ~index: [@ns.namedArgLoc] int) => option(char) = ;
       String.reverse("stressed") == "desserts"
     ]}
 */
-external reverse: string => string = ;
+external reverse: string => string;
 /** Extract a substring from the specified indicies.
 
     See {!Array.slice}.
 */
 external slice:
   (~to_: [@ns.namedArgLoc] int=?, string, ~from: [@ns.namedArgLoc] int) =>
-  string =
+  string
   ;
 /** {1 Query} */;
-/** Check if a string is empty */ external isEmpty: string => bool = ;
+/** Check if a string is empty */ external isEmpty: string => bool;
 /** Returns the length of the given string.
 
     {2 Examples}
@@ -104,7 +104,7 @@ external slice:
       String.length("abc") == 3
     ]}
 */
-external length: string => int = ;
+external length: string => int;
 /** See if the string starts with [prefix].
 
     {2 Examples}
@@ -114,7 +114,7 @@ external length: string => int = ;
       String.startsWith("theory", ~prefix="ory") == false
     ]}
 */
-external startsWith: (string, ~prefix: [@ns.namedArgLoc] string) => bool = ;
+external startsWith: (string, ~prefix: [@ns.namedArgLoc] string) => bool;
 /** See if the string ends with [suffix].
 
     {2 Examples}
@@ -124,7 +124,7 @@ external startsWith: (string, ~prefix: [@ns.namedArgLoc] string) => bool = ;
       String.endsWith("theory", ~suffix="ory") == true
     ]}
 */
-external endsWith: (string, ~suffix: [@ns.namedArgLoc] string) => bool = ;
+external endsWith: (string, ~suffix: [@ns.namedArgLoc] string) => bool;
 /** Check if one string appears within another
 
     {2 Examples}
@@ -135,7 +135,7 @@ external endsWith: (string, ~suffix: [@ns.namedArgLoc] string) => bool = ;
       String.includes("ABC", ~substring="") == true
     ]}
 */
-external includes: (string, ~substring: [@ns.namedArgLoc] string) => bool = ;
+external includes: (string, ~substring: [@ns.namedArgLoc] string) => bool;
 /** Test if the first letter of a string is upper case.
 
     {2 Examples}
@@ -145,7 +145,7 @@ external includes: (string, ~substring: [@ns.namedArgLoc] string) => bool = ;
       String.isCapitalized("") == false
     ]}
 */
-external isCapitalized: string => bool = ;
+external isCapitalized: string => bool;
 /** Drop [count] characters from the left side of a string.
 
     {2 Examples}
@@ -158,7 +158,7 @@ external isCapitalized: string => bool = ;
       String.dropLeft("abcdefg", ~count=8) == ""
     ]}
 */
-external dropLeft: (string, ~count: [@ns.namedArgLoc] int) => string = ;
+external dropLeft: (string, ~count: [@ns.namedArgLoc] int) => string;
 /** Drop [count] characters from the right side of a string.
 
     {2 Examples}
@@ -171,7 +171,7 @@ external dropLeft: (string, ~count: [@ns.namedArgLoc] int) => string = ;
       String.dropRight("abcdefg", ~count=8) == ""
     ]}
 */
-external dropRight: (string, ~count: [@ns.namedArgLoc] int) => string = ;
+external dropRight: (string, ~count: [@ns.namedArgLoc] int) => string;
 /** Returns the index of the first occurrence of [string] or None if string has no occurences of [string]
 
     {2 Examples}
@@ -181,7 +181,7 @@ external dropRight: (string, ~count: [@ns.namedArgLoc] int) => string = ;
       String.indexOf("Hello World World", "Bye") == None
     ]}
 */
-external indexOf: (string, string) => option(int) = ;
+external indexOf: (string, string) => option(int);
 /** Returns the index of the last occurrence of [string] or None if string has no occurences of [string]
 
     {2 Examples}
@@ -191,7 +191,7 @@ external indexOf: (string, string) => option(int) = ;
       String.indexOfRight("Hello World World", "Bye") == None
     ]}
 */
-external indexOfRight: (string, string) => option(int) = ;
+external indexOfRight: (string, string) => option(int);
 /** Insert a string at [index].
 
     The character previously at index will now follow the inserted string.
@@ -209,7 +209,7 @@ external indexOfRight: (string, string) => option(int) = ;
 */
 external insertAt:
   (string, ~index: [@ns.namedArgLoc] int, ~value: [@ns.namedArgLoc] t) =>
-  string =
+  string
   ;
 /** Converts all upper case letters to lower case.
 
@@ -219,7 +219,7 @@ external insertAt:
       String.toLowercase("AaBbCc123") == "aabbcc123"
     ]}
 */
-external toLowercase: string => string = ;
+external toLowercase: string => string;
 /** Converts all lower case letters to upper case.
 
     {2 Examples}
@@ -228,7 +228,7 @@ external toLowercase: string => string = ;
       String.toUppercase("AaBbCc123") == "AABBCC123"
     ]}
 */
-external toUppercase: string => string = ;
+external toUppercase: string => string;
 /** Converts the first letter to lower case if it is upper case.
 
     {2 Examples}
@@ -237,7 +237,7 @@ external toUppercase: string => string = ;
       String.uncapitalize("Anastasia") == "anastasia"
     ]}
 */
-external uncapitalize: string => string = ;
+external uncapitalize: string => string;
 /** Converts the first letter of [s] to lowercase if it is upper case.
 
     {2 Examples}
@@ -246,7 +246,7 @@ external uncapitalize: string => string = ;
       String.capitalize("den") == "Den"
     ]}
 */
-external capitalize: string => string = ;
+external capitalize: string => string;
 /** Removes leading and trailing {{!Char.isWhitespace} whitespace} from a string
 
     {2 Examples}
@@ -260,11 +260,11 @@ external capitalize: string => string = ;
 ") == "abc"
     ]}
 */
-external trim: string => string = ;
+external trim: string => string;
 /** Like {!trim} but only drops characters from the beginning of the string. */
-external trimLeft: string => string = ;
+external trimLeft: string => string;
 /** Like {!trim} but only drops characters from the end of the string. */
-external trimRight: string => string = ;
+external trimRight: string => string;
 /** Pad a string up to a minimum length.
 
     If the string is shorted than the proivded length, adds [with_]
@@ -276,7 +276,7 @@ external trimRight: string => string = ;
       String.padLeft("5", 3, ~with_="0") == "005"
     ]}
 */
-external padLeft: (string, int, ~with_: [@ns.namedArgLoc] string) => string = ;
+external padLeft: (string, int, ~with_: [@ns.namedArgLoc] string) => string;
 /** Pad a string up to a minimum length.
 
     If the string is shorted than the proivded length, adds [with_]
@@ -288,7 +288,7 @@ external padLeft: (string, int, ~with_: [@ns.namedArgLoc] string) => string = ;
       String.padRight("Ahh", 7, ~with_="h") == "Ahhhhhh"
     ]}
 */
-external padRight: (string, int, ~with_: [@ns.namedArgLoc] string) => string =
+external padRight: (string, int, ~with_: [@ns.namedArgLoc] string) => string
   ;
 /** Returns, as an {!Option}, a tuple containing the first {!Char} and the remaining String.
 
@@ -302,7 +302,7 @@ external padRight: (string, int, ~with_: [@ns.namedArgLoc] string) => string =
       String.uncons("") == None
     ]}
 */
-external uncons: string => option((char, string)) = ;
+external uncons: string => option((char, string));
 /** Divide a string into a list of strings, splitting whenever [on] is encountered.
 
     {2 Examples}
@@ -315,10 +315,10 @@ external uncons: string => option((char, string)) = ;
       String.split("abc", ~on="") == list{"a", "b", "c"}
     ]}
 */
-external split: (string, ~on: [@ns.namedArgLoc] string) => list(string) = ;
+external split: (string, ~on: [@ns.namedArgLoc] string) => list(string);
 /** {1 Iterate} */;
 /** Run [f] on each character in a string. */
-external forEach: (string, ~f: [@ns.namedArgLoc] (char => unit)) => unit = ;
+external forEach: (string, ~f: [@ns.namedArgLoc] (char => unit)) => unit;
 /** Like {!Array.fold} but the elements are {!Char}s  */
 external fold:
   (
@@ -326,7 +326,7 @@ external fold:
     ~initial: [@ns.namedArgLoc] 'a,
     ~f: [@ns.namedArgLoc] (('a, char) => 'a)
   ) =>
-  'a =
+  'a
   ;
 /** {1 Convert} */;
 /** Returns an {!Array} of the individual characters in the given string.
@@ -338,7 +338,7 @@ external fold:
       String.toArray("abc") == ['a', 'b', 'c']
     ]}
 */
-external toArray: string => array(char) = ;
+external toArray: string => array(char);
 /** Returns a {!List} of the individual characters in the given string.
 
     {2 Examples}
@@ -348,10 +348,10 @@ external toArray: string => array(char) = ;
       String.toList("abc") == list{'a', 'b', 'c'}
     ]}
 */
-external toList: string => list(char) = ;
+external toList: string => list(char);
 /** {1 Compare} */;
 /** Test two string for equality. */
-external equal: (string, string) => bool = ;
+external equal: (string, string) => bool;
 /** Compare two strings. Strings use 'dictionary' ordering.
 1
     Also known as {{: https://en.wikipedia.org/wiki/Lexicographical_order } lexicographical ordering }.
@@ -365,7 +365,7 @@ external equal: (string, string) => bool = ;
       String.compare("Peach", "Peach") == 0
     ]}
 */
-external compare: (string, string) => int = ;
+external compare: (string, string) => int;
 /** The unique identity for {!Comparator} */
 type nonrec identity;
-external comparator: TableclothComparator.t(t, identity) = ;
+external comparator: TableclothComparator.t(t, identity);

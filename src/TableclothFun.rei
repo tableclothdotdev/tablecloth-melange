@@ -60,9 +60,9 @@ external ignore: _ => unit = "%ignore";
       Array.initialize(6, ~f=Fun.constant(0)) == [0, 0, 0, 0, 0, 0]
     ]}
 */
-external constant: ('a, 'b) => 'a = ;
+external constant: ('a, 'b) => 'a;
 /** A function which always returns its second argument. */
-external sequence: ('a, 'b) => 'b = ;
+external sequence: ('a, 'b) => 'b;
 /** Reverses the argument order of a function.
 
     For any arguments [x] and [y], [flip(f)(x, y)] is the same as [f(y, x)].
@@ -70,7 +70,7 @@ external sequence: ('a, 'b) => 'b = ;
     Perhaps you want to [fold] something, but the arguments of a function you
     already have access to are in the wrong order.
 */
-external flip: (('a, 'b) => 'c, 'b, 'a) => 'c = ;
+external flip: (('a, 'b) => 'c, 'b, 'a) => 'c;
 /** Negate a function.
 
     This can be useful in combination with {!List.filter} / {!Array.filter} or {!List.find} / {!Array.find}.
@@ -82,14 +82,14 @@ external flip: (('a, 'b) => 'c, 'b, 'a) => 'c = ;
       isLessThanTwelve(12) == false
    ]}
 */
-external negate: ('a => bool, 'a) => bool = ;
+external negate: ('a => bool, 'a) => bool;
 /** Calls function [f] with an argument [x].
 
     [apply(f, x)] is exactly the same as [f(x)].
 
     Maybe you want to apply a function to a [switch] expression? That sort of thing.
 */
-external apply: ('a => 'b, 'a) => 'b = ;
+external apply: ('a => 'b, 'a) => 'b;
 /** Function composition, passing result from left to right.
 
     This is usefull in cases when you want to make multiple transformations
@@ -105,7 +105,7 @@ external apply: ('a => 'b, 'a) => 'b = ;
       multiplied == ["5", "10", "15", "20", "25", "30", "35"]
    ]}
 */
-external compose: ('a, 'a => 'b, 'b => 'c) => 'c = ;
+external compose: ('a, 'a => 'b, 'b => 'c) => 'c;
 /** Function composition, passing result from right to left.
 
     Same as [!compose], but function application order is reversed.
@@ -123,7 +123,7 @@ external compose: ('a, 'a => 'b, 'b => 'c) => 'c = ;
       multiplied == ["5", "10", "15", "20", "25", "30", "35"]
    ]}
 */
-external composeRight: ('a, 'b => 'c, 'a => 'b) => 'c = ;
+external composeRight: ('a, 'b => 'c, 'a => 'b) => 'c;
 /** Useful for performing some side affect in {!Fun.pipe}-lined code.
 
     Most commonly used to log a value in the middle of a pipeline of function calls.
@@ -142,12 +142,12 @@ external composeRight: ('a, 'b => 'c, 'a => 'b) => 'c = ;
       ->Fun.tap(~f=Array.reverse) == [4, 0]
    ]}
 */
-external tap: ('a, ~f: [@ns.namedArgLoc] ('a => unit)) => 'a = ;
+external tap: ('a, ~f: [@ns.namedArgLoc] ('a => unit)) => 'a;
 /** Runs the provided function, forever.
 
     If an exception is thrown, returns the exception.
 */
-external forever: (unit => unit) => exn = ;
+external forever: (unit => unit) => exn;
 /** Runs a function repeatedly.
 
     {2 Examples}
@@ -158,7 +158,7 @@ external forever: (unit => unit) => exn = ;
       count.contents == 10
    ]}
 */
-external times: (int, ~f: [@ns.namedArgLoc] (unit => unit)) => unit = ;
+external times: (int, ~f: [@ns.namedArgLoc] (unit => unit)) => unit;
 /** Takes a function [f] which takes a single argument of a tuple [('a, 'b)] and returns a function which takes two arguments that can be partially applied.
 
     {2 Examples}
@@ -170,7 +170,7 @@ external times: (int, ~f: [@ns.namedArgLoc] (unit => unit)) => unit = ;
       Array.map(sizes, ~f=curriedArea(4)) == [12, 16, 20]
    ]}
 */
-external curry: ((('a, 'b)) => 'c, 'a, 'b) => 'c = ;
+external curry: ((('a, 'b)) => 'c, 'a, 'b) => 'c;
 /** Takes a function which takes two arguments and returns a function which takes a single argument of a tuple.
 
     {2 Examples}
@@ -181,8 +181,8 @@ external curry: ((('a, 'b)) => 'c, 'a, 'b) => 'c = ;
       uncurriedSum((3, 4)) == 7
    ]}
 */
-external uncurry: (('a, 'b) => 'c, ('a, 'b)) => 'c = ;
+external uncurry: (('a, 'b) => 'c, ('a, 'b)) => 'c;
 /** Like {!curry} but for a {!Tuple3}. */
-external curry3: ((('a, 'b, 'c)) => 'd, 'a, 'b, 'c) => 'd = ;
+external curry3: ((('a, 'b, 'c)) => 'd, 'a, 'b, 'c) => 'd;
 /** Like {!uncurry} but for a {!Tuple3}. */
-external uncurry3: (('a, 'b, 'c) => 'd, ('a, 'b, 'c)) => 'd = ;
+external uncurry3: (('a, 'b, 'c) => 'd, ('a, 'b, 'c)) => 'd;

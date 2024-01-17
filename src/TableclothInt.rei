@@ -28,12 +28,12 @@
 */;
 type nonrec t = int;
 /** {1 Constants } */;
-/** The literal [0] as a named value. */ external zero: t = ;
-/** The literal [1] as a named value. */ external one: t = ;
+/** The literal [0] as a named value. */ external zero: t;
+/** The literal [1] as a named value. */ external one: t;
 /** The maximum representable [int] on the current platform. */
-external maximumValue: t = ;
+external maximumValue: t;
 /** The minimum representable [int] on the current platform. */
-external minimumValue: t = ;
+external minimumValue: t;
 /** {1 Create} */;
 /** Attempt to parse a [string] into a [int].
 
@@ -50,7 +50,7 @@ external minimumValue: t = ;
       Int.fromString("NaN") == None
     ]}
 */
-external fromString: string => option(t) = ;
+external fromString: string => option(t);
 /** {1 Operators} */;
 /** Add two {!Int} numbers.
 
@@ -64,7 +64,7 @@ external fromString: string => option(t) = ;
       Int.add(3002, 4004) == 7006
     ]}
 */
-external add: (t, t) => t = ;
+external add: (t, t) => t;
 /** Subtract numbers.
 
     {2 Examples}
@@ -73,7 +73,7 @@ external add: (t, t) => t = ;
       Int.subtract(4, 3) == 1
     ]}
 */
-external subtract: (t, t) => t = ;
+external subtract: (t, t) => t;
 /** Multiply [int]s.
 
     {2 Examples}
@@ -82,7 +82,7 @@ external subtract: (t, t) => t = ;
       Int.multiply(2, 7) == 14
     ]}
 */
-external multiply: (t, t) => t = ;
+external multiply: (t, t) => t;
 /** Integer division.
 
     Notice that the remainder is discarded.
@@ -97,7 +97,7 @@ external multiply: (t, t) => t = ;
       Int.divide(3, ~by=2) == 1
     ]}
 */
-external divide: (t, ~by: [@ns.namedArgLoc] t) => t = ;
+external divide: (t, ~by: [@ns.namedArgLoc] t) => t;
 /** Floating point division
 
     {2 Examples}
@@ -108,7 +108,7 @@ external divide: (t, ~by: [@ns.namedArgLoc] t) => t = ;
       Int.divideFloat(8, ~by=4) == 2.0
     ]}
 */
-external divideFloat: (t, ~by: [@ns.namedArgLoc] t) => float = ;
+external divideFloat: (t, ~by: [@ns.namedArgLoc] t) => float;
 /** Exponentiation, takes the base first, then the exponent.
 
     {2 Examples}
@@ -118,7 +118,7 @@ external divideFloat: (t, ~by: [@ns.namedArgLoc] t) => float = ;
     ]}
 */
 external power:
-  (~base: [@ns.namedArgLoc] t, ~exponent: [@ns.namedArgLoc] t) => t =
+  (~base: [@ns.namedArgLoc] t, ~exponent: [@ns.namedArgLoc] t) => t
   ;
 /** Flips the 'sign' of an integer so that positive integers become negative and negative integers become positive. Zero stays as it is.
 
@@ -130,7 +130,7 @@ external power:
       Int.negate(0) == 0
     ]}
 */
-external negate: t => t = ;
+external negate: t => t;
 /** Get the {{: https://en.wikipedia.org/wiki/Absolute_value } absolute value } of a number.
 
     {2 Examples}
@@ -141,7 +141,7 @@ external negate: t => t = ;
       Int.absolute(0) == 0
     ]}
 */
-external absolute: t => t = ;
+external absolute: t => t;
 /** Perform {{: https://en.wikipedia.org/wiki/Modular_arithmetic } modular arithmetic }.
 
     {b Note:} {!modulo} is not [%] JS operator. If you want [%], use {!remainder}
@@ -166,7 +166,7 @@ external absolute: t => t = ;
       Int.modulo(4, ~by=3) == 1
     ]}
 */
-external modulo: (t, ~by: [@ns.namedArgLoc] t) => t = ;
+external modulo: (t, ~by: [@ns.namedArgLoc] t) => t;
 /** Get the remainder after division. Works the same as [%] JS operator
 
     Use {!Int.modulo} for a different treatment of negative numbers.
@@ -182,7 +182,7 @@ external modulo: (t, ~by: [@ns.namedArgLoc] t) => t = ;
       [-1, 0, -3, -2, -1, 0, 1, 2, 3, 0, 1]
    ]}
 */
-external remainder: (t, ~by: [@ns.namedArgLoc] t) => t = ;
+external remainder: (t, ~by: [@ns.namedArgLoc] t) => t;
 /** Returns the larger of two [int]s.
 
     {2 Examples}
@@ -192,7 +192,7 @@ external remainder: (t, ~by: [@ns.namedArgLoc] t) => t = ;
       Int.maximum(-4, -1) == -1
     ]}
 */
-external maximum: (t, t) => t = ;
+external maximum: (t, t) => t;
 /** Returns the smaller of two [int]s.
 
     {2 Examples}
@@ -202,7 +202,7 @@ external maximum: (t, t) => t = ;
       Int.minimum(-4, -1) == -4
     ]}
 */
-external minimum: (t, t) => t = ;
+external minimum: (t, t) => t;
 /** {1 Query} */;
 /** Check if an [int] is even.
 
@@ -214,7 +214,7 @@ external minimum: (t, t) => t = ;
       Int.isEven(0) == true
     ]}
 */
-external isEven: t => bool = ;
+external isEven: t => bool;
 /** Check if an [int] is odd.
 
   {2 Examples}
@@ -225,7 +225,7 @@ external isEven: t => bool = ;
       Int.isOdd(0) == false
     ]}
 */
-external isOdd: t => bool = ;
+external isOdd: t => bool;
 /** Clamps [n] within the inclusive [lower] and [upper] bounds.
 
   {3 Exceptions}
@@ -241,7 +241,7 @@ external isOdd: t => bool = ;
     ]}
 */
 external clamp:
-  (t, ~lower: [@ns.namedArgLoc] t, ~upper: [@ns.namedArgLoc] t) => t =
+  (t, ~lower: [@ns.namedArgLoc] t, ~upper: [@ns.namedArgLoc] t) => t
   ;
 /** Checks if [n] is between [lower] and up to, but not including, [upper].
 
@@ -259,7 +259,7 @@ external clamp:
 
 */
 external inRange:
-  (t, ~lower: [@ns.namedArgLoc] t, ~upper: [@ns.namedArgLoc] t) => bool =
+  (t, ~lower: [@ns.namedArgLoc] t, ~upper: [@ns.namedArgLoc] t) => bool
   ;
 /** {1 Convert} */;
 /** Convert an [int] into a [float]. Useful when mixing {!Int} and {!Float} values like this:
@@ -272,7 +272,7 @@ external inRange:
       halfOf(7) == 3.5
    ]}
 */
-external toFloat: t => float = ;
+external toFloat: t => float;
 /** Convert an [int] into a [string] representation.
 
     Guarantees that
@@ -289,10 +289,10 @@ external toFloat: t => float = ;
       Int.toString(0) == "0"
     ]}
 */
-external toString: t => string = ;
+external toString: t => string;
 /** {1 Compare} */;
-/** Test two [int]s for equality. */ external equal: (t, t) => bool = ;
-/** Compare two [int]s. */ external compare: (t, t) => int = ;
+/** Test two [int]s for equality. */ external equal: (t, t) => bool;
+/** Compare two [int]s. */ external compare: (t, t) => int;
 /** The unique identity for {!Comparator}.*/
 type nonrec identity;
-external comparator: TableclothComparator.t(t, identity) = ;
+external comparator: TableclothComparator.t(t, identity);
