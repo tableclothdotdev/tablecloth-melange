@@ -16,7 +16,7 @@ bug-reports: "https://github.com/tableclothdotdev/tablecloth-melange/issues"
 dev-repo: "git://github.com/tableclothdotdev/tablecloth-melange"
 depends: [
   "ocaml" {>= "5.1"}
-  "dune"
+  "dune" {>= "3.8"}
   "reason"
   "melange"
 
